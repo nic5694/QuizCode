@@ -14,7 +14,6 @@ struct SignUpPage: View {
     @State private var showingDatePickerView = false
     @State private var isLinkActive = false
     @State private var showHomeView = false
-    
     @EnvironmentObject var viewModel: QuizCodeViewModel
     let dateFormatter = DateFormatter()
     var body: some View {

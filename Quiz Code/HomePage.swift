@@ -14,15 +14,16 @@ struct HomePage: View {
             VStack{
                 HStack{
                     SupportingTitleText(text: "Hi \(viewModel.user.firstName!), please select the subject you would like to test yourself on.")
-                    Button(action: {
-                        //TODO add open the settings view
-                    }){
+                   
+                    NavigationLink{
+                        SettingsView(firstName: viewModel.user.firstName!, lastName: viewModel.user.lastName!, birthday: viewModel.user.birthday!)
+                    } label: {
                         AnimationGear()
-                    }
-                    .tint(.white)
-                    .navigationBarTitle("Home", displayMode: .inline)
-                    .onAppear{
-                        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 30, weight: .bold)]
+                            .tint(.white)
+                            .navigationBarTitle("Home", displayMode: .inline)
+                            .onAppear{
+                                UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 30, weight: .bold)]
+                            }
                     }
                     Spacer()
                 }
