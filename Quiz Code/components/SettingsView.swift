@@ -43,10 +43,24 @@ struct SettingsView: View {
                     }.padding()
                 }
             }
-            .frame(maxHeight: 300)
+            .frame(maxWidth: 500, maxHeight: 300)
             .cornerRadius(20.0)
             .padding()
-            
+            ScrollView {
+                ScrollListItem(text: "Quiz: Linux 13/15")
+                ScrollListItem(text: "Quiz: Docker 15/15")
+                ScrollListItem(text: "Quiz: PHP 20/20")
+                ScrollListItem(text: "Quiz: JavaScript 17/20")
+                ScrollListItem(text: "Quiz: HTML 5/5")
+                ScrollListItem(text: "Quiz: Python 11/20")
+                ScrollListItem(text: "Quiz: Linux 1/1")
+                ScrollListItem(text: "Quiz: HTML 7/7")
+                
+            }
+            .frame(maxWidth: 500)
+            .background(Color(.white))
+            .cornerRadius(20.0)
+            .padding()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color("DarkGreen"))
