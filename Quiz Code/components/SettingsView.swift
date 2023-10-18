@@ -13,7 +13,6 @@ struct SettingsView: View {
     @State public var lastName: String
     @State public var birthday: Date
     @State private var showingDatePickerView = false
-    
     var body: some View {
         VStack{
             TitleHeader(text: "Settings")
@@ -41,9 +40,20 @@ struct SettingsView: View {
                     } label: {
                         Text("Birthday :")
                     }.padding()
+                    HStack(alignment: .center){
+                        Spacer()
+                        Button(action: {
+                            if(viewModel.user.firstName != firstName || viewModel.user.lastName != lastName || viewModel.user.birthday != birthday){
+                                viewModel.user = User(firstName: firstName, lastName: lastName, birthday: birthday)
+                            }
+                        }, label: {
+                            Text("Save Changes")
+                        })
+                        Spacer()
+                    }
                 }
             }
-            .frame(maxWidth: 500, maxHeight: 300)
+            .frame(maxWidth: 500, maxHeight: 600)
             .cornerRadius(20.0)
             .padding()
             ScrollView {
