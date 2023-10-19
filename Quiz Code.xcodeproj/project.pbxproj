@@ -12,7 +12,7 @@
 		672F445A2ADC84E700E96C5B /* TitleHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672F44592ADC84E700E96C5B /* TitleHeader.swift */; };
 		672F445C2ADC857600E96C5B /* SupportingTitleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672F445B2ADC857600E96C5B /* SupportingTitleText.swift */; };
 		672F445E2ADC8D0800E96C5B /* AnimationGear.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672F445D2ADC8D0800E96C5B /* AnimationGear.swift */; };
-		672F44602ADC8EA200E96C5B /* QuizContainerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672F445F2ADC8EA200E96C5B /* QuizContainerComponent.swift */; };
+		672F44602ADC8EA200E96C5B /* QuizContainerImageComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672F445F2ADC8EA200E96C5B /* QuizContainerImageComponent.swift */; };
 		672F44622ADC9C0200E96C5B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 672F44612ADC9C0200E96C5B /* Colors.xcassets */; };
 		672F44642ADCAAE500E96C5B /* QuizSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672F44632ADCAAE500E96C5B /* QuizSetup.swift */; };
 		672F44662ADCADD000E96C5B /* DifficultySelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672F44652ADCADD000E96C5B /* DifficultySelector.swift */; };
@@ -20,6 +20,7 @@
 		672F446A2ADCC9EF00E96C5B /* QuizQuestionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672F44692ADCC9EF00E96C5B /* QuizQuestionComponent.swift */; };
 		672F446C2ADCCA6800E96C5B /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672F446B2ADCCA6800E96C5B /* Question.swift */; };
 		673A3A542AE08BBF00C07A8D /* ScrollListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673A3A532AE08BBF00C07A8D /* ScrollListItem.swift */; };
+		673A3A562AE0A25600C07A8D /* ResultsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673A3A552AE0A25600C07A8D /* ResultsPage.swift */; };
 		67531D842ACB553300EE9EE9 /* Quiz_CodeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67531D832ACB553300EE9EE9 /* Quiz_CodeApp.swift */; };
 		67531D862ACB553300EE9EE9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67531D852ACB553300EE9EE9 /* ContentView.swift */; };
 		67531D882ACB553500EE9EE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67531D872ACB553500EE9EE9 /* Assets.xcassets */; };
@@ -36,7 +37,7 @@
 		672F44592ADC84E700E96C5B /* TitleHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleHeader.swift; sourceTree = "<group>"; };
 		672F445B2ADC857600E96C5B /* SupportingTitleText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportingTitleText.swift; sourceTree = "<group>"; };
 		672F445D2ADC8D0800E96C5B /* AnimationGear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationGear.swift; sourceTree = "<group>"; };
-		672F445F2ADC8EA200E96C5B /* QuizContainerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizContainerComponent.swift; sourceTree = "<group>"; };
+		672F445F2ADC8EA200E96C5B /* QuizContainerImageComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizContainerImageComponent.swift; sourceTree = "<group>"; };
 		672F44612ADC9C0200E96C5B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		672F44632ADCAAE500E96C5B /* QuizSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSetup.swift; sourceTree = "<group>"; };
 		672F44652ADCADD000E96C5B /* DifficultySelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultySelector.swift; sourceTree = "<group>"; };
@@ -44,6 +45,7 @@
 		672F44692ADCC9EF00E96C5B /* QuizQuestionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestionComponent.swift; sourceTree = "<group>"; };
 		672F446B2ADCCA6800E96C5B /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		673A3A532AE08BBF00C07A8D /* ScrollListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollListItem.swift; sourceTree = "<group>"; };
+		673A3A552AE0A25600C07A8D /* ResultsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPage.swift; sourceTree = "<group>"; };
 		67531D802ACB553300EE9EE9 /* Quiz Code.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Quiz Code.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		67531D832ACB553300EE9EE9 /* Quiz_CodeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz_CodeApp.swift; sourceTree = "<group>"; };
 		67531D852ACB553300EE9EE9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -81,13 +83,14 @@
 				672F445B2ADC857600E96C5B /* SupportingTitleText.swift */,
 				672F44592ADC84E700E96C5B /* TitleHeader.swift */,
 				67531D972ACF60A100EE9EE9 /* DatePickerView.swift */,
-				672F445F2ADC8EA200E96C5B /* QuizContainerComponent.swift */,
+				672F445F2ADC8EA200E96C5B /* QuizContainerImageComponent.swift */,
 				672F44632ADCAAE500E96C5B /* QuizSetup.swift */,
 				672F44652ADCADD000E96C5B /* DifficultySelector.swift */,
 				672F44672ADCBDB400E96C5B /* CounterQuestionComponent.swift */,
 				672F44692ADCC9EF00E96C5B /* QuizQuestionComponent.swift */,
 				67D849FC2ADDB0C5008DAF23 /* SettingsView.swift */,
 				673A3A532AE08BBF00C07A8D /* ScrollListItem.swift */,
+				673A3A552AE0A25600C07A8D /* ResultsPage.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -222,11 +225,12 @@
 				67D849FD2ADDB0C5008DAF23 /* SettingsView.swift in Sources */,
 				67531D9B2ACF61A900EE9EE9 /* User.swift in Sources */,
 				672F44552ADC6B0300E96C5B /* QuizCodeViewModel.swift in Sources */,
-				672F44602ADC8EA200E96C5B /* QuizContainerComponent.swift in Sources */,
+				672F44602ADC8EA200E96C5B /* QuizContainerImageComponent.swift in Sources */,
 				672F446A2ADCC9EF00E96C5B /* QuizQuestionComponent.swift in Sources */,
 				672F445C2ADC857600E96C5B /* SupportingTitleText.swift in Sources */,
 				672F44682ADCBDB400E96C5B /* CounterQuestionComponent.swift in Sources */,
 				672F44582ADC84C900E96C5B /* HomePage.swift in Sources */,
+				673A3A562AE0A25600C07A8D /* ResultsPage.swift in Sources */,
 				672F44642ADCAAE500E96C5B /* QuizSetup.swift in Sources */,
 				672F445A2ADC84E700E96C5B /* TitleHeader.swift in Sources */,
 				67531D842ACB553300EE9EE9 /* Quiz_CodeApp.swift in Sources */,

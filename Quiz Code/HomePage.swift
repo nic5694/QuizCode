@@ -34,12 +34,12 @@ struct HomePage: View {
                         NavigationLink {
                             QuizSetup(title: "HTML Quiz", image: Image("html"))
                         } label: {
-                            QuizContainerComponent(image: Image("html"))
+                            QuizContainerImageComponent(image: Image("html"))
                         }
                         NavigationLink(destination: {
                             QuizSetup(title: "Linux Quiz", image: Image("linux"))
                         }) {
-                            QuizContainerComponent(image: Image("linux"))
+                            QuizContainerImageComponent(image: Image("linux"))
                         }
                     }
                     Spacer()
@@ -47,12 +47,12 @@ struct HomePage: View {
                         NavigationLink {
                             QuizSetup(title: "Docker Quiz", image: Image("docker"))
                         } label: {
-                            QuizContainerComponent(image: Image("docker"))
+                            QuizContainerImageComponent(image: Image("docker"))
                         }
                         NavigationLink {
                             QuizSetup(title: "PHP Quiz", image: Image("php"))
                         } label: {
-                            QuizContainerComponent(image: Image("php"))
+                            QuizContainerImageComponent(image: Image("php"))
                         }
                     }
                     Spacer()
@@ -60,12 +60,12 @@ struct HomePage: View {
                         NavigationLink {
                             QuizSetup(title: "Python", image: Image("python"))
                         } label: {
-                            QuizContainerComponent(image: Image("python"))
+                            QuizContainerImageComponent(image: Image("python"))
                         }
                         NavigationLink{
                             QuizSetup(title: "Javascript Quiz", image: Image("javascript"))
                         } label:{
-                            QuizContainerComponent(image: Image("javascript"))
+                            QuizContainerImageComponent(image: Image("javascript"))
                         }
                     }
                 }

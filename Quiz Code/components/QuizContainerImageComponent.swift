@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct QuizContainerComponent: View {
+struct QuizContainerImageComponent: View {
     var image: Image
     var body: some View {
         VStack{
@@ -21,5 +21,5 @@ struct QuizContainerComponent: View {
 }
 
 #Preview {
-    QuizContainerComponent(image: Image("php"))
+    QuizContainerImageComponent(image: Image("php"))
 }

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct Question {
+struct Question:Identifiable {
     let id: Int
     let question: String
     let description: String
