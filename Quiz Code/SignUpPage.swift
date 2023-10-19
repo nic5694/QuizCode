@@ -14,6 +14,7 @@ struct SignUpPage: View {
     @State private var showingDatePickerView = false
     @State private var isLinkActive = false
     @State private var showHomeView = false
+    @State private var username: String = ""
     @EnvironmentObject var viewModel: QuizCodeViewModel
     let dateFormatter = DateFormatter()
     var body: some View {
@@ -23,6 +24,11 @@ struct SignUpPage: View {
                 SupportingTitleText(text: "Please enter your information below")
                 Form{
                     Section(header: Text("User Information")){
+                        LabeledContent{
+                            TextField("superSmart5694", text: $username)
+                        } label: {
+                            Text("Username: ")
+                        }.padding()
                         LabeledContent{
                             TextField("John", text: $firstName)
                         } label: {
@@ -47,7 +53,7 @@ struct SignUpPage: View {
                         }.padding()
                     }
                 }
-                .frame(maxHeight: 300)
+                .frame(maxHeight: 375)
                 .cornerRadius(20.0)
                 .padding()
                 Button(action: {
