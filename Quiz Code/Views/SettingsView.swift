@@ -57,15 +57,9 @@ struct SettingsView: View {
             .cornerRadius(20.0)
             .padding()
             ScrollView {
-                ScrollListItem(text: "Quiz: Linux 13/15")
-                ScrollListItem(text: "Quiz: Docker 15/15")
-                ScrollListItem(text: "Quiz: PHP 20/20")
-                ScrollListItem(text: "Quiz: JavaScript 17/20")
-                ScrollListItem(text: "Quiz: HTML 5/5")
-                ScrollListItem(text: "Quiz: Python 11/20")
-                ScrollListItem(text: "Quiz: Linux 1/1")
-                ScrollListItem(text: "Quiz: HTML 7/7")
-                
+                ForEach(viewModel.scrollListItem, id: \.text) { item in
+                    item
+                }
             }
             .frame(maxWidth: 500)
             .background(Color(.white))

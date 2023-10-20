@@ -88,11 +88,21 @@
 				672F44652ADCADD000E96C5B /* DifficultySelector.swift */,
 				672F44672ADCBDB400E96C5B /* CounterQuestionComponent.swift */,
 				672F44692ADCC9EF00E96C5B /* QuizQuestionComponent.swift */,
-				67D849FC2ADDB0C5008DAF23 /* SettingsView.swift */,
 				673A3A532AE08BBF00C07A8D /* ScrollListItem.swift */,
-				673A3A552AE0A25600C07A8D /* ResultsPage.swift */,
 			);
 			path = components;
+			sourceTree = "<group>";
+		};
+		673A3A592AE1CDE800C07A8D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				673A3A552AE0A25600C07A8D /* ResultsPage.swift */,
+				67D849FC2ADDB0C5008DAF23 /* SettingsView.swift */,
+				672F44562ADC7EF000E96C5B /* components */,
+				672F44572ADC84C900E96C5B /* HomePage.swift */,
+				67531D912ACB575900EE9EE9 /* SignUpPage.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		67531D772ACB553300EE9EE9 = {
@@ -121,9 +131,7 @@
 				67531D872ACB553500EE9EE9 /* Assets.xcassets */,
 				672F44612ADC9C0200E96C5B /* Colors.xcassets */,
 				67531D892ACB553500EE9EE9 /* Preview Content */,
-				67531D912ACB575900EE9EE9 /* SignUpPage.swift */,
-				672F44572ADC84C900E96C5B /* HomePage.swift */,
-				672F44562ADC7EF000E96C5B /* components */,
+				673A3A592AE1CDE800C07A8D /* Views */,
 			);
 			path = "Quiz Code";
 			sourceTree = "<group>";
