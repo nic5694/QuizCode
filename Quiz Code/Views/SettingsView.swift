@@ -8,11 +8,19 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @EnvironmentObject var viewModel:QuizCodeViewModel
-    @State public var firstName: String
-    @State public var lastName: String
-    @State public var birthday: Date
+    @EnvironmentObject var userViewModel:UserViewModel
+    @EnvironmentObject var questionViewModel: QuestionViewModel
+    @State public var firstName: String = ""
+    @State public var lastName: String = ""
+    @State public var birthday: Date = Date.now
     @State private var showingDatePickerView = false
+    
+    init() {
+//        _firstName = State(initialValue: userViewModel.user.firstName)
+//        _lastName = State(initialValue: userViewModel.user.lastName)
+//        _birthday = State(initialValue: userViewModel.user.birthday)
+        self.showingDatePickerView = showingDatePickerView
+    }
     var body: some View {
         VStack{
             TitleHeader(text: "Settings")
@@ -31,9 +39,7 @@ struct SettingsView: View {
                     LabeledContent{
                         Text(birthday, style: .date).onTapGesture {
                             showingDatePickerView.toggle()
-                        }.sheet(isPresented: $showingDatePickerView, onDismiss:{
-                            self.birthday = viewModel.user.birthday!
-                        }) {
+                        }.sheet(isPresented: $showingDatePickerView) {
                             DatePickerView()
                                 .presentationDetents([.height(300)])
                         }
@@ -43,8 +49,8 @@ struct SettingsView: View {
                     HStack(alignment: .center){
                         Spacer()
                         Button(action: {
-                            if(viewModel.user.firstName != firstName || viewModel.user.lastName != lastName || viewModel.user.birthday != birthday){
-                                viewModel.user = User(firstName: firstName, lastName: lastName, birthday: birthday)
+                            if(userViewModel.user.firstName != firstName || userViewModel.user.lastName != lastName || userViewModel.user.birthday != birthday){
+                                userViewModel.user = User(firstName: firstName, lastName: lastName, birthday: birthday)
                             }
                         }, label: {
                             Text("Save Changes")
@@ -57,7 +63,7 @@ struct SettingsView: View {
             .cornerRadius(20.0)
             .padding()
             ScrollView {
-                ForEach(viewModel.scrollListItem, id: \.text) { item in
+                ForEach(questionViewModel.scrollListItem, id: \.text) { item in
                     item
                 }
             }
@@ -67,10 +73,10 @@ struct SettingsView: View {
             .padding()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color("DarkGreen"))
+        .background(Color.white)
     }
 }
 
 #Preview {
-    SettingsView(firstName: "Nicholas", lastName: "Martoccia", birthday: Date())
+    SettingsView()
 }

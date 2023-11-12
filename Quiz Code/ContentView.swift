@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+ //   @StateObject var userViewModel = UserViewModel()
     var body: some View {
         VStack {
             SignUpPage()

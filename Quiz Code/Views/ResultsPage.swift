@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct ResultsPage: View {
-    @EnvironmentObject var viewModel: QuizCodeViewModel
+    @EnvironmentObject var viewModel: QuestionViewModel
     var body: some View {
         VStack{
             TitleHeader(text: "Results: \(viewModel.getScore(userAnswers: ["A": "ls", "B":"ls-l"], answers: ["A" : "cd", "B": "ls-l"]))")
             SupportingTitleText(text: "Please try again if you didn't get 100")
           
                 NavigationLink {
-                    HomePage()
+                    //HomePage()
                 } label: {
                     Text("Back to home!")
                 }

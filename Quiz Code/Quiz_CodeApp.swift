@@ -9,12 +9,12 @@ import SwiftUI
 
 @main
 struct Quiz_CodeApp: App {
-    @StateObject private var quizCodeViewModel = QuizCodeViewModel()
+   // @StateObject private var quizCodeViewModel = QuestionViewModel()
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(quizCodeViewModel)
-                .background(Color("DarkGreen"))
+           //     .environmentObject(quizCodeViewModel)
+                .background(Color.white)
         }
     }
 }

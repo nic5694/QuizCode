@@ -15,7 +15,7 @@ struct TitleHeader: View {
             .bold()
             .multilineTextAlignment(.center)
             .padding()
-            .foregroundStyle(.white)
+            .foregroundStyle(.black)
         
     }
 }

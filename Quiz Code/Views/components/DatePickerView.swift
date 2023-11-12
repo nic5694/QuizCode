@@ -10,7 +10,7 @@ import SwiftUI
 struct DatePickerView: View {
     @Environment(\.dismiss) var dismiss
     @State private var birthday: Date = Date()
-    @EnvironmentObject var viewModel: QuizCodeViewModel
+    @EnvironmentObject var viewModel: UserViewModel
     var body: some View {
            VStack{
                NavigationStack{

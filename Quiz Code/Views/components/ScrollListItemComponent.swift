@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ScrollListItem: View {
+struct ScrollListItemComponent: View {
     let text: String
     var body: some View {
         Text(text)
@@ -19,5 +19,5 @@ struct ScrollListItem: View {
 }
 
 #Preview {
-    ScrollListItem(text: "Testing the item")
+    ScrollListItemComponent(text: "Testing the item")
 }

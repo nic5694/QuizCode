@@ -15,7 +15,7 @@ struct SignUpPage: View {
     @State private var isLinkActive = false
     @State private var showHomeView = false
     @State private var username: String = ""
-    @EnvironmentObject var viewModel: QuizCodeViewModel
+ //   @EnvironmentObject var viewModel: UserViewModel
     let dateFormatter = DateFormatter()
     var body: some View {
         NavigationStack{
@@ -42,9 +42,7 @@ struct SignUpPage: View {
                         LabeledContent{
                             Text(birthday, style: .date).onTapGesture {
                                 showingDatePickerView.toggle()
-                            }.sheet(isPresented: $showingDatePickerView, onDismiss:{
-                                self.birthday = viewModel.user.birthday!
-                            }) {
+                            }.sheet(isPresented: $showingDatePickerView) {
                                 DatePickerView()
                                     .presentationDetents([.height(300)])
                             }
@@ -57,15 +55,15 @@ struct SignUpPage: View {
                 .cornerRadius(20.0)
                 .padding()
                 Button(action: {
-                    viewModel.user = User(firstName: firstName, lastName: lastName, birthday: birthday)
+//                    viewModel.user = User(firstName: firstName, lastName: lastName, birthday: birthday)
                     showHomeView.toggle()
                 }, label: {
                     Text("Continue")
                 }).padding()
                     .fullScreenCover(isPresented: $showHomeView) {
-                        HomePage()
+                        HomePage(user: User(firstName: firstName, lastName: lastName, birthday: birthday))
                     }
-            }.frame(maxWidth: .infinity, maxHeight: .infinity).background(Color("DarkGreen"))
+            }.frame(maxWidth: .infinity, maxHeight: .infinity).background(Color.white)
         }
     }
 }

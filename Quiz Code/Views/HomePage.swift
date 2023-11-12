@@ -8,21 +8,27 @@
 import SwiftUI
 
 struct HomePage: View {
-    @EnvironmentObject var viewModel: QuizCodeViewModel
+    let user: User
+    @StateObject var userViewModel: UserViewModel
+    @StateObject var questionViewModel = QuestionViewModel()
+    init(user: User) {
+        self.user = user
+        _userViewModel = StateObject(wrappedValue: UserViewModel(user: user))
+    }
     var body: some View {
         NavigationStack{
             VStack{
                 HStack{
-                    SupportingTitleText(text: "Hi \(viewModel.user.firstName!), please select the subject you would like to test yourself on.")
+                    SupportingTitleText(text: "Hi \(userViewModel.user.firstName), please select the subject you would like to test yourself on.")
                    
                     NavigationLink{
-                        SettingsView(firstName: viewModel.user.firstName!, lastName: viewModel.user.lastName!, birthday: viewModel.user.birthday!)
+                        SettingsView()
                     } label: {
                         AnimationGear()
                             .tint(.white)
                             .navigationBarTitle("Home", displayMode: .inline)
                             .onAppear{
-                                UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 30, weight: .bold)]
+                                UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.black, .font: UIFont.systemFont(ofSize: 30, weight: .bold)]
                             }
                     }
                     Spacer()
@@ -69,11 +75,12 @@ struct HomePage: View {
                         }
                     }
                 }
-            }.frame(maxWidth: .infinity, maxHeight: .infinity).background(Color("DarkGreen"))
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)//.background(Color("DarkGreen"))
         }
     }
 }
 
 #Preview {
-    HomePage()
+    HomePage(user: User(firstName: "Nicholas", lastName: "Martoccia", birthday: Date.now))
 }

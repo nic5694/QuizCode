@@ -7,21 +7,21 @@
 
 import Foundation
 import SwiftUI
-class QuizCodeViewModel : ObservableObject {
-    @Published var user : User
+class QuestionViewModel : ObservableObject {
+   
     @Published var questions: [Question]?
     @Published var currentQuizProgress : [String]?
-    @Published var scrollListItem: [ScrollListItem] = [
-        ScrollListItem(text: "Quiz: Linux 13/15"),
-        ScrollListItem(text: "Quiz: Docker 15/15"),
-        ScrollListItem(text: "Quiz: PHP 20/20"),
-        ScrollListItem(text: "Quiz: JavaScript 17/20"),
-        ScrollListItem(text: "Quiz: HTML 5/5"),
-        ScrollListItem(text: "Quiz: Python 11/20"),
-        ScrollListItem(text: "Quiz: Linux 1/1"),
-        ScrollListItem(text: "Quiz: HTML 7/7")]
+    @Published var scrollListItem: [ScrollListItemComponent] = [
+        ScrollListItemComponent(text: "Quiz: Linux 13/15"),
+        ScrollListItemComponent(text: "Quiz: Docker 15/15"),
+        ScrollListItemComponent(text: "Quiz: PHP 20/20"),
+        ScrollListItemComponent(text: "Quiz: JavaScript 17/20"),
+        ScrollListItemComponent(text: "Quiz: HTML 5/5"),
+        ScrollListItemComponent(text: "Quiz: Python 11/20"),
+        ScrollListItemComponent(text: "Quiz: Linux 1/1"),
+        ScrollListItemComponent(text: "Quiz: HTML 7/7")]
     init(){
-        self.user = User(birthday: Date())
+        
     }
     func retreiveQuestions(category: String, difficulty: String, nbOfQuestions: Int, Tags: [String]){
         

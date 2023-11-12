@@ -14,7 +14,7 @@ struct SupportingTitleText: View {
             .font(.title2)
             .padding()
             .multilineTextAlignment(.center)
-            .foregroundStyle(.white)
+            .foregroundStyle(.black)
     }
 }
 

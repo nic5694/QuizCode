@@ -7,11 +7,10 @@
 
 import SwiftUI
 struct User {
-    var firstName: String?
-    var lastName: String?
-    var birthday: Date?
-    init(){}
-    init(firstName: String? = nil, lastName: String? = nil, birthday: Date? = nil) {
+    var firstName: String
+    var lastName: String
+    var birthday: Date
+    init(firstName: String, lastName: String, birthday: Date) {
         self.firstName = firstName
         self.lastName = lastName
         self.birthday = birthday

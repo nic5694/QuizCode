@@ -9,7 +9,7 @@ import SwiftUI
 
 struct QuizQuestionComponent: View {
     var question: Question
-    @EnvironmentObject var viewModel: QuizCodeViewModel
+    @EnvironmentObject var viewModel: QuestionViewModel
     @State var selectedOptionIndex = 0
     var body: some View {
         NavigationStack{
