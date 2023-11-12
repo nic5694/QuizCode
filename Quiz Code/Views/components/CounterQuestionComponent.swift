@@ -20,11 +20,9 @@ struct CounterQuestionComponent: View {
                 Image(systemName: "plus")
             })
             .font(.system(size: 50))
-            .foregroundStyle(.white)
+            .foregroundStyle(.black)
             Spacer()
-            Text(value.description)
-                .font(.title2)
-                .foregroundStyle(.white)
+            Text(value.description).supportingTitleTextOnWhiteBackgroundStyle()
            Spacer()
             Button(action: {
                 if value > 0 {
@@ -34,7 +32,7 @@ struct CounterQuestionComponent: View {
                 Image(systemName: "minus")
             })
             .font(.system(size: 50))
-            .foregroundStyle(.white)
+            .foregroundStyle(.black)
             Spacer()
         }
     }

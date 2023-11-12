@@ -9,9 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
  //   @StateObject var userViewModel = UserViewModel()
+    @StateObject var questionViewModel = QuestionViewModel()
     var body: some View {
         VStack {
             SignUpPage()
+                .environmentObject(questionViewModel)
         }
         .padding()
     }
