@@ -92,13 +92,13 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		672F44532ADC6AF200E96C5B /* ViewModel */ = {
+		672F44532ADC6AF200E96C5B /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				672F44542ADC6B0300E96C5B /* QuestionViewModel.swift */,
 				6721EB8C2B015BCC00C15D70 /* UserViewModel.swift */,
 			);
-			path = ViewModel;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		672F44562ADC7EF000E96C5B /* components */ = {
@@ -126,7 +126,6 @@
 				672F44572ADC84C900E96C5B /* HomePage.swift */,
 				673A3A552AE0A25600C07A8D /* ResultsPage.swift */,
 				67D849FC2ADDB0C5008DAF23 /* SettingsView.swift */,
-				672F44562ADC7EF000E96C5B /* components */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -150,10 +149,11 @@
 		67531D822ACB553300EE9EE9 /* Quiz Code */ = {
 			isa = PBXGroup;
 			children = (
+				672F44562ADC7EF000E96C5B /* components */,
 				6721EB8B2B015B3F00C15D70 /* Services */,
 				6721EB8A2B015B3100C15D70 /* Helpers */,
-				672F44532ADC6AF200E96C5B /* ViewModel */,
-				67531D992ACF617300EE9EE9 /* Model */,
+				672F44532ADC6AF200E96C5B /* ViewModels */,
+				67531D992ACF617300EE9EE9 /* Models */,
 				67531D832ACB553300EE9EE9 /* Quiz_CodeApp.swift */,
 				67531D852ACB553300EE9EE9 /* ContentView.swift */,
 				67531D872ACB553500EE9EE9 /* Assets.xcassets */,
@@ -172,13 +172,13 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		67531D992ACF617300EE9EE9 /* Model */ = {
+		67531D992ACF617300EE9EE9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				67531D9A2ACF61A900EE9EE9 /* User.swift */,
 				672F446B2ADCCA6800E96C5B /* Question.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
