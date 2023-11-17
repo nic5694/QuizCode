@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 class QuestionViewModel : ObservableObject {
-   
+    private let quizService = QuizAcessService()
     @Published var questions: [Question]?
     @Published var currentQuizProgress : [String]?
     @Published var scrollListItem: [ScrollListItemComponent] = [
@@ -21,10 +21,22 @@ class QuestionViewModel : ObservableObject {
         ScrollListItemComponent(text: "Quiz: Linux 1/1"),
         ScrollListItemComponent(text: "Quiz: HTML 7/7")]
     init(){
+        //retreiveQuestions(category: <#T##String#>, difficulty: <#T##String#>, nbOfQuestions: <#T##Int#>)
+        quizService.getQuestions(quantity: 10, category: "Linux", difficulty: "easy"){
+            item in
+            DispatchQueue.main.async{
+                self.questions?.append(contentsOf: item)
+            }
+        }
         
     }
-    func retreiveQuestions(category: String, difficulty: String, nbOfQuestions: Int, Tags: [String]){
-        
+    func retreiveQuestions(category: String, difficulty: String, nbOfQuestions: Int){
+        quizService.getQuestions(quantity: 10, category: "Linux", difficulty: "easy"){
+            item in
+            DispatchQueue.main.async{
+                self.questions?.append(contentsOf: item)
+            }
+        }
     }
     func getScore(userAnswers: [String: String],answers: [String: String]) -> String{
         var correctCount = 0

@@ -15,10 +15,10 @@ struct QuizQuestionComponent: View {
         NavigationStack{
             VStack{
                 TitleHeader(text: question.question)
-                SupportingTitleText(text: question.description)
+                SupportingTitleText(text: question.description ?? "")
                 Picker("Question", selection: $selectedOptionIndex) {
                     ForEach(Array(question.answers.keys), id: \.self) { answerKey in
-                        Text(question.answers[answerKey] ?? "").tag(question.id)
+                        Text((question.answers[answerKey])! ?? "").tag(question.id)
                     }
                 }
                 Button (action: {
@@ -44,6 +44,6 @@ struct QuizQuestionComponent: View {
     }
 }
 
-#Preview {
-    QuizQuestionComponent(question: Question(id: 1, question: "What is Docker?", description: "Docker is a platform for developing, shipping, and running applications in containers.", answers: ["A": "A containerization technology", "B": "A version control system", "C": "A database management system", "D": "A cloud computing platform"], multiple_correct_answers: false, correct_answers: ["A": true], explanation: "Docker is a containerization technology that allows you to package and run applications and their dependencies in isolated containers.", category: "DevOps", difficulty: "Medium"))
-    }
+//#Preview {
+//    QuizQuestionComponent(question: Question(id: 1, question: "What is Docker?", description: "Docker is a platform for developing, shipping, and running applications in containers.", answers: ["A": "A containerization technology", "B": "A version control system", "C": "A database management system", "D": "A cloud computing platform"], multiple_correct_answers: false, correct_answers: ["A": true], explanation: "Docker is a containerization technology that allows you to package and run applications and their dependencies in isolated containers.", category: "DevOps", tags: , difficulty: "Medium", correctAnswer: "A cloud computing platform"))
+//    }
