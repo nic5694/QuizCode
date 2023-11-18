@@ -10,10 +10,15 @@ import SwiftUI
 struct DifficultySelector: View {
     @State private var didTap: Bool = false
     @State private var tap: [Bool] = [false, false, false]
+    @Binding var selectedDifficulty: String
     func selectDifficulty(_ index: Int) {
         for i in 0..<tap.count {
             tap[i] = (i == index)
         }
+        selectedDifficulty = ["Easy", "Medium", "Hard"][index]
+    }
+    init(selectedDifficulty: Binding<String>) {
+        self._selectedDifficulty = selectedDifficulty
     }
     var body: some View {
         HStack{
@@ -63,5 +68,5 @@ struct DifficultySelector: View {
 }
 
 #Preview {
-    DifficultySelector()
+    DifficultySelector(selectedDifficulty: .constant(""))
 }

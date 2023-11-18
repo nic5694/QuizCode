@@ -8,15 +8,25 @@
 import Foundation
 
 class QuizAcessService {
-    func getQuestions(quantity: Int, category: String, difficulty: String, _ completion: @escaping([Question]) -> ()) {
+    func getQuestions(quantity: Int, category: String, difficulty: String, tags: String = "", _ completion: @escaping([Question]) -> ()) {
         // Construct the URL with query parameters
         let urlString = "https://quizapi.io/api/v1/questions"
-        let queryParams = [
-            "category": category,
-            "limit": String(quantity),
-            "difficulty": difficulty
-        ]
-        let urlWithParams = urlString + "?" + queryParams.map { "\($0.key)=\($0.value)" }.joined(separator: "&")
+        let queryParams =  {
+            if(tags != ""){
+                return [
+                    "limit": String(quantity),
+                    "difficulty": difficulty,
+                    "tags": tags
+                ]
+            } else {
+                return [
+                    "category": category,
+                    "limit": String(quantity),
+                    "difficulty": difficulty
+                ]
+            }
+        }
+        let urlWithParams = urlString + "?" + queryParams().map { "\($0.key)=\($0.value)" }.joined(separator: "&")
 
         // Construct the headers
         let headers = [

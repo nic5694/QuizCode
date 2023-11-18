@@ -19,24 +19,34 @@ class QuestionViewModel : ObservableObject {
         ScrollListItemComponent(text: "Quiz: HTML 5/5"),
         ScrollListItemComponent(text: "Quiz: Python 11/20"),
         ScrollListItemComponent(text: "Quiz: Linux 1/1"),
-        ScrollListItemComponent(text: "Quiz: HTML 7/7")]
-    init(){
-        //retreiveQuestions(category: <#T##String#>, difficulty: <#T##String#>, nbOfQuestions: <#T##Int#>)
-        quizService.getQuestions(quantity: 10, category: "Linux", difficulty: "easy"){
-            item in
-            DispatchQueue.main.async{
-                self.questions?.append(contentsOf: item)
+        ScrollListItemComponent(text: "Quiz: HTML 7/7")
+    ]
+    func retreiveQuestions(nbOfQuestions: Int, category: String? = nil, difficulty: String, tags: String? = nil){
+        if(category == nil || category == "" && tags != nil){
+            quizService.getQuestions(quantity: nbOfQuestions, category: "", difficulty: difficulty, tags: tags!){
+                item in
+                DispatchQueue.main.async{
+                    self.questions?.append(contentsOf: item)
+                }
             }
+        } else if (category != nil && tags == nil){
+            quizService.getQuestions(quantity: nbOfQuestions, category: category!, difficulty: difficulty, tags: ""){
+                item in
+                DispatchQueue.main.async{
+                    self.questions?.append(contentsOf: item)
+                }
+            }
+        } else{
+            return
         }
         
-    }
-    func retreiveQuestions(category: String, difficulty: String, nbOfQuestions: Int){
-        quizService.getQuestions(quantity: 10, category: "Linux", difficulty: "easy"){
-            item in
-            DispatchQueue.main.async{
-                self.questions?.append(contentsOf: item)
-            }
-        }
+
+//        quizService.getQuestions(quantity: 10, category: "Linux", difficulty: "easy"){
+//            item in
+//            DispatchQueue.main.async{
+//                self.questions?.append(contentsOf: item)
+//            }
+//        }
     }
     func getScore(userAnswers: [String: String],answers: [String: String]) -> String{
         var correctCount = 0

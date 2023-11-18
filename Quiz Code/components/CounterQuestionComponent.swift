@@ -8,7 +8,13 @@
 import SwiftUI
 
 struct CounterQuestionComponent: View {
-    @State var value: Int = 10
+    @Binding var value: Int
+    public func getValue() -> Int{
+        return self.value
+    }
+    init(value: Binding<Int>) {
+        self._value = value
+    }
     var body: some View {
         HStack{
             Spacer()
@@ -39,5 +45,5 @@ struct CounterQuestionComponent: View {
 }
 
 #Preview {
-    CounterQuestionComponent()
+    CounterQuestionComponent(value: .constant(0))
 }

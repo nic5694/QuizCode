@@ -11,6 +11,9 @@ struct QuizContainerImageComponent: View {
     var title: String
     var image: Image
     var themeColor: Color
+    @EnvironmentObject var questionViewModel: QuestionViewModel
+    @State private var selectedDifficulty: String = ""
+    @State private var numberOfQuestions: Int = 1
     var body: some View {
         VStack{
             VStack{
@@ -29,15 +32,22 @@ struct QuizContainerImageComponent: View {
                     .foregroundStyle(Color.black)
                     
                 
-                DifficultySelector()
+                DifficultySelector(selectedDifficulty: $selectedDifficulty)
                 
                 Text("How many questions? (Max 20)").foregroundStyle(Color.black)
                 
-                CounterQuestionComponent()
+                CounterQuestionComponent(value: $numberOfQuestions)
+                
                 NavigationLink{
                     
                 }label: {
                     Button(action: {
+                        if(title == "Docker" || title == "Linux"){
+                            questionViewModel.retreiveQuestions(nbOfQuestions: numberOfQuestions, category: title, difficulty: selectedDifficulty)
+                        }
+                        else{
+                            questionViewModel.retreiveQuestions(nbOfQuestions: numberOfQuestions, category: "", difficulty: selectedDifficulty, tags: title)
+                        }
                         
                     }, label: {
                         Text("Start")

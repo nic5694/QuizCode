@@ -24,12 +24,12 @@ struct QuizSetup: View {
                 
                 SupportingTitleText(text: "Please select your difficulty level.")
                 
-                DifficultySelector()
+//                DifficultySelector()
                     .padding()
                 
                 SupportingTitleText(text: "How many questions? (Max 20)")
                 
-                CounterQuestionComponent()
+//                CounterQuestionComponent()
                     .padding()
                 NavigationLink {
 //                    QuizQuestionComponent(question: Question(id: 1, question: "What is Docker?", description: "Docker is a platform for developing, shipping, and running applications in containers.", answers: ["A": "A containerization technology", "B": "A version control system", "C": "A database management system", "D": "A cloud computing platform"], multiple_correct_answers: false, correct_answers: ["A": true], explanation: "Docker is a containerization technology that allows you to package and run applications and their dependencies in isolated containers.", category: "DevOps", difficulty: "Medium"))
