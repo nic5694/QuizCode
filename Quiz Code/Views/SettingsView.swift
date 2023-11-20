@@ -10,6 +10,7 @@ import SwiftUI
 struct SettingsView: View {
     @EnvironmentObject var userViewModel:UserViewModel
     @EnvironmentObject var questionViewModel: QuestionViewModel
+    @EnvironmentObject var scoreViewModel: ScoreViewModel
     @State public var firstName: String = ""
     @State public var lastName: String = ""
     @State public var birthday: Date = Date.now
@@ -63,8 +64,8 @@ struct SettingsView: View {
             .cornerRadius(20.0)
             .padding()
             ScrollView {
-                ForEach(questionViewModel.scrollListItem, id: \.text) { item in
-                    item
+                ForEach(scoreViewModel.scoreList, id: \.text) { item in
+                    Text("Quiz: \(item.subject) \(item.score)")
                 }
             }
             .frame(maxWidth: 500)

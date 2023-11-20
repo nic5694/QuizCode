@@ -6,9 +6,13 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct Quiz_CodeApp: App {
+    init(){
+        FirebaseApp.configure()
+    }
    // @StateObject private var quizCodeViewModel = QuestionViewModel()
     var body: some Scene {
         WindowGroup {

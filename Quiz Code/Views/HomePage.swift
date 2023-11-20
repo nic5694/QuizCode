@@ -9,6 +9,7 @@ import SwiftUI
 struct HomePage: View {
     let user: User
     @StateObject var userViewModel: UserViewModel
+    @StateObject var scoreViewModel: ScoreViewModel
     @EnvironmentObject var questionViewModel:QuestionViewModel
     init(user: User) {
         self.user = user
@@ -65,7 +66,7 @@ struct HomePage: View {
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .environmentObject(userViewModel)
+            .environmentObject(userViewModel, scoreViewModel)
         
     }
 }
