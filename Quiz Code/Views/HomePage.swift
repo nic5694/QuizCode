@@ -7,15 +7,16 @@
 import SwiftUI
 
 struct HomePage: View {
-    let user: User
-    @StateObject var userViewModel: UserViewModel
+    var user: User
+    @EnvironmentObject var userViewModel: UserViewModel
     @StateObject var scoreViewModel: ScoreViewModel
     @EnvironmentObject var questionViewModel:QuestionViewModel
     init(user: User) {
+        
         self.user = user
         _scoreViewModel = StateObject(wrappedValue: ScoreViewModel())
-        _userViewModel = StateObject(wrappedValue: UserViewModel(user: user))
-        userViewModel.addUser(user: user)
+      //  _userViewModel = StateObject(wrappedValue: UserViewModel(/*user: user)*/))
+        //userViewModel.addUser(user: user)
     }
     var body: some View {
         NavigationStack{
@@ -35,7 +36,7 @@ struct HomePage: View {
                                         HStack{
                                             Text("Hi \(userViewModel.user.firstName), please select the subject you would like to test yourself on.").supportingTitleTextOnBlueBackgroundStyle()
                                             NavigationLink{
-                                                SettingsView(firstName: user.firstName, lastName: user.lastName, birthday: user.birthday)
+                                                SettingsView(firstName: userViewModel.user.firstName, lastName: userViewModel.user.lastName, userName: userViewModel.user.userName)
                                             } label: {
                                                 AnimationGear()
                                                     .tint(.white)
@@ -75,5 +76,5 @@ struct HomePage: View {
 }
 
 #Preview {
-    HomePage(user: User(firstName: "Nicholas", lastName: "Martoccia", birthday: Date.now))
+    HomePage(user: User(firstName: "Nicholas", lastName: "Martoccia", userName: "Tester234"))
 }

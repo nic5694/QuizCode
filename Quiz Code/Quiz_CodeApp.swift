@@ -14,10 +14,12 @@ struct Quiz_CodeApp: App {
         FirebaseApp.configure()
     }
     @StateObject private var quizCodeViewModel = QuestionViewModel()
+    @StateObject var userViewModel = UserViewModel(/*user: User(firstName: "", lastName: "", userName: "")*/)
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(quizCodeViewModel)
+                .environmentObject(userViewModel)
                 .background(Color.white)
         }
     }

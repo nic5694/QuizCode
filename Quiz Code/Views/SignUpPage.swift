@@ -17,9 +17,12 @@ struct SignUpPage: View {
     @State private var showHomeView = false
     @State private var username: String = ""
     
- //   @EnvironmentObject var viewModel: UserViewModel
+    @EnvironmentObject var userViewModel: UserViewModel
     let dateFormatter = DateFormatter()
-    
+    init(){
+//        self.firstName = viewModel.user.firstName
+            //   self.lastName = v
+    }
     var body: some View {
         NavigationStack{
             VStack {
@@ -42,34 +45,25 @@ struct SignUpPage: View {
                         } label: {
                             Text("Last Name: ")
                         }.padding()
-                        LabeledContent{
-                            Text(birthday, style: .date).onTapGesture {
-                                showingDatePickerView.toggle()
-                            }.sheet(isPresented: $showingDatePickerView) {
-                                DatePickerView()
-                                    .presentationDetents([.height(300)])
-                            }
-                        } label: {
-                            Text("Birthday :")
-                        }.padding()
                     }
                 }
-                .frame(maxHeight: 375)
-                .cornerRadius(20.0)
-                .padding()
-                Button(action: {
-//                    viewModel.user = User(firstName: firstName, lastName: lastName, birthday: birthday)
-                    showHomeView.toggle()
-                }, label: {
-                    Text("Continue")
-                }).padding()
-                    .fullScreenCover(isPresented: $showHomeView) {
-                        HomePage(user: User(firstName: firstName, lastName: lastName, birthday: birthday))
-                    }
-            }.frame(maxWidth: .infinity, maxHeight: .infinity).background(Color.white)
-        }
+            }
+            .frame(maxHeight: 450)
+            .cornerRadius(20.0)
+            .padding()
+            Button(action: {
+                userViewModel.addUser(user: User(firstName: firstName, lastName: lastName, userName: username))
+                showHomeView.toggle()
+            }, label: {
+                Text("Continue")
+            }).padding()
+                .fullScreenCover(isPresented: $showHomeView) {
+                    HomePage(user: User(firstName: firstName, lastName: lastName, userName: username))
+                }
+        }.frame(maxWidth: .infinity, maxHeight: .infinity).background(Color.white)
     }
 }
+
 
 
 #Preview {

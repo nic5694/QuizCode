@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseFirestore
 extension Bundle {
     func decode<T: Decodable>(file: String) -> T {
         guard let url = self.url(forResource: file, withExtension: nil) else {
@@ -75,6 +76,31 @@ extension Bundle {
             }.resume()
         }
     }
+
+//struct TimestampCodingKeys: CodingKey {
+//    var stringValue: String
+//    var intValue: Int?
+//
+//    init?(stringValue: String) {
+//        self.stringValue = stringValue
+//        self.intValue = Int(stringValue)
+//    }
+//
+//    init?(intValue: Int) {
+//        self.stringValue = String(intValue)
+//        self.intValue = intValue
+//    }
+//}
+//
+//extension Decoder {
+//    func decodeTimestamp(forKey key: CodingKey) throws -> Date {
+//        let container = try self.container(keyedBy: TimestampCodingKeys.self)
+//        let timestamp = try container.decode(Timestamp.self, forKey: TimestampCodingKeys(stringValue: key.stringValue)!)
+//        return timestamp.dateValue()
+//    }
+//}
+
+
     
 //    func fetchData<T: Decodable>(url: String, model: T.Type ,headers: [String: String]? = nil,  completion:@escaping(T) -> (), failure: @escaping(Error)-> ()){
 //        guard let url = URL(string: url) else {return}
