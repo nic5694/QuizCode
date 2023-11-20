@@ -10,6 +10,8 @@ import SwiftUI
 class QuestionViewModel : ObservableObject {
     private let quizService = QuizAcessService()
     //@Published var questions: [Question]?
+    @Published var showResults = false
+    @Published var quizInProgress = false
     var questionsDidChange: (() -> Void)?
 
     @Published var questions: [Question]? {
@@ -18,8 +20,8 @@ class QuestionViewModel : ObservableObject {
         }
     }
     @Published var currentQuizProgress : [String]?
-    @Published var quizScreenCover = false
-    @Published var isQuizStarted: Bool? = false
+ //   @Published var quizScreenCover = false
+    @Published var isQuizStarted: Bool = false
     @Published var currentQuizQuestionNum: Int = 0
     @Published var scrollListItem: [ScrollListItemComponent] = [
         ScrollListItemComponent(text: "Quiz: Linux 13/15"),
@@ -94,18 +96,38 @@ class QuestionViewModel : ObservableObject {
 ////        }
 //        print("Size of the questions array: \(self.questions?.count)")
 //    }
-    func getScore(userAnswers: [String: String],answers: [String: String]) -> String{
-        var correctCount = 0
-        let totalQuestions = userAnswers.count
-        
-        for (question, userAnswer) in userAnswers {
-            if let correctAnswer = answers[question] {
-                if userAnswer == correctAnswer {
-                    correctCount += 1
-                }
-            }
+//    func getScore(userAnswers: [String: String],answers: [String]) -> String{
+//        var correctCount = 0
+//        let totalQuestions = userAnswers.count
+//        
+//        for (question, userAnswer) in userAnswers {
+//            if let correctAnswer = answers[question] {
+//                if userAnswer == correctAnswer {
+//                    correctCount += 1
+//                }
+//            }
+//        }
+//        return "\(correctCount) / \(totalQuestions)"
+//    }
+
+    func getAnswerArray() -> [String]{
+        var answer: [String] = []
+        for question in questions!{
+            answer.append(question.correct_answer!)
         }
-        return "\(correctCount) / \(totalQuestions)"
+        return answer
+    }
+    func calculateScore(userAnswers: [String])-> String{
+        let answers = getAnswerArray()
+        var count = 0
+        var correctAnswers = 0
+        for a in userAnswers{
+            if(a == answers[0]){
+                correctAnswers += 1
+            }
+            count += 1
+        }
+        return "\(correctAnswers)/\(count)"
     }
     
 }

@@ -14,7 +14,7 @@ struct QuizContainerComponent: View {
     @EnvironmentObject var questionViewModel: QuestionViewModel
     @State private var selectedDifficulty: String = ""
     @State private var numberOfQuestions: Int = 10
-    @State private var test = false
+   // @State private var test = false
     var body: some View {
         VStack{
             VStack{
@@ -51,9 +51,10 @@ struct QuizContainerComponent: View {
                             
                         }
                         questionViewModel.currentQuizQuestionNum = 0
+                       // questionViewModel.quizInProgress.toggle()
                     }, label: {
                         Text("Start")
-                    }).fullScreenCover(isPresented: $test){
+                    }).fullScreenCover(isPresented: $questionViewModel.quizInProgress){
                         //QuizQuestionComponent(question: questionViewModel.questions![0])
                         QuizQuestionOrchestrationComponent()
                     }
@@ -61,7 +62,8 @@ struct QuizContainerComponent: View {
                         // Use didSet observer to trigger when questions are set
                         questionViewModel.questionsDidChange = {
                             if let questions = questionViewModel.questions, !questions.isEmpty {
-                                test.toggle()
+                                questionViewModel.quizInProgress.toggle()
+                              //  test.toggle()
                             }
                         }
                     }
