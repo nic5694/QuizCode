@@ -51,12 +51,12 @@ struct HomePage: View {
                                         ScrollView(.horizontal){
                                             VStack{
                                                 HStack{
-                                                    QuizContainerImageComponent(title: "HTML",image: Image("html"), themeColor: Color.red)
-                                                    QuizContainerImageComponent(title: "Linux",image: Image("linux"),themeColor: Color.yellow)
-                                                    QuizContainerImageComponent(title: "Docker",image: Image("docker"), themeColor: Color.gray)
-                                                    QuizContainerImageComponent(title: "PHP", image: Image("php"), themeColor: Color.purple)
-                                                    QuizContainerImageComponent(title: "Python", image: Image("python"), themeColor: Color.green)
-                                                    QuizContainerImageComponent(title: "Javascript", image: Image("javascript"), themeColor: Color.orange)
+                                                    QuizContainerComponent(title: "HTML",image: Image("html"), themeColor: Color.red)
+                                                    QuizContainerComponent(title: "Linux",image: Image("linux"),themeColor: Color.yellow)
+                                                    QuizContainerComponent(title: "Docker",image: Image("docker"), themeColor: Color.gray)
+                                                    QuizContainerComponent(title: "PHP", image: Image("php"), themeColor: Color.purple)
+                                                    QuizContainerComponent(title: "Python", image: Image("python"), themeColor: Color.green)
+                                                    QuizContainerComponent(title: "Javascript", image: Image("javascript"), themeColor: Color.orange)
                                                 }
                                             }
                                         }

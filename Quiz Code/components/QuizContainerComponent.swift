@@ -7,13 +7,14 @@
 
 import SwiftUI
 
-struct QuizContainerImageComponent: View {
+struct QuizContainerComponent: View {
     var title: String
     var image: Image
     var themeColor: Color
     @EnvironmentObject var questionViewModel: QuestionViewModel
     @State private var selectedDifficulty: String = ""
-    @State private var numberOfQuestions: Int = 1
+    @State private var numberOfQuestions: Int = 10
+    @State private var test = false
     var body: some View {
         VStack{
             VStack{
@@ -47,11 +48,23 @@ struct QuizContainerImageComponent: View {
                         }
                         else{
                             questionViewModel.retreiveQuestions(nbOfQuestions: numberOfQuestions, category: "", difficulty: selectedDifficulty, tags: title)
+                            
                         }
-                        
+                        questionViewModel.currentQuizQuestionNum = 0
                     }, label: {
                         Text("Start")
-                    })
+                    }).fullScreenCover(isPresented: $test){
+                        //QuizQuestionComponent(question: questionViewModel.questions![0])
+                        QuizQuestionOrchestrationComponent()
+                    }
+                    .onAppear{
+                        // Use didSet observer to trigger when questions are set
+                        questionViewModel.questionsDidChange = {
+                            if let questions = questionViewModel.questions, !questions.isEmpty {
+                                test.toggle()
+                            }
+                        }
+                    }
                 }
                 Spacer()
             }
@@ -64,5 +77,5 @@ struct QuizContainerImageComponent: View {
 }
 
 #Preview {
-    QuizContainerImageComponent(title: "Php Quiz", image: Image("php"), themeColor: Color.purple)
+    QuizContainerComponent(title: "Php Quiz", image: Image("php"), themeColor: Color.purple)
 }
