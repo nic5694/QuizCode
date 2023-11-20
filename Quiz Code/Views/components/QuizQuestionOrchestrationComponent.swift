@@ -28,6 +28,13 @@ struct QuizQuestionOrchestrationComponent: View {
             questionViewModel.showResults.toggle()
         }
     }
+    func getCategoryOrTag() -> String{
+        if(questionViewModel.questions![0].category == "" || questionViewModel.questions![0].category == "Code"){
+            return questionViewModel.questions![0].tags![0].name
+        } else {
+        return questionViewModel.questions![0].category
+        }
+    }
     
     var body: some View {
         if(index < questionViewModel.questions?.count ?? 0){
@@ -44,7 +51,7 @@ struct QuizQuestionOrchestrationComponent: View {
                 NavigationLink {
                     
                 } label: {}.fullScreenCover(isPresented: $questionViewModel.showResults){
-                    ResultsPage(results: questionViewModel.calculateScore(userAnswers: userAnswers))
+                    ResultsPage(results: questionViewModel.calculateScore(userAnswers: userAnswers), subject: getCategoryOrTag())
                 }
                 Text("Submit")
                 //    }

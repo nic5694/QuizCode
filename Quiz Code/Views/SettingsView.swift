@@ -11,17 +11,36 @@ struct SettingsView: View {
     @EnvironmentObject var userViewModel:UserViewModel
     @EnvironmentObject var questionViewModel: QuestionViewModel
     @EnvironmentObject var scoreViewModel: ScoreViewModel
-    @State public var firstName: String = ""
-    @State public var lastName: String = ""
-    @State public var birthday: Date = Date.now
+    @State var firstName: String
+    @State var lastName: String
+    @State var birthday: Date
     @State private var showingDatePickerView = false
     
-    init() {
-//        _firstName = State(initialValue: userViewModel.user.firstName)
-//        _lastName = State(initialValue: userViewModel.user.lastName)
-//        _birthday = State(initialValue: userViewModel.user.birthday)
+    init(firstName: String, lastName: String, birthday: Date) {
+        _firstName = State(initialValue: firstName)
+        _lastName = State(initialValue: lastName)
+        _birthday = State(initialValue: birthday)
         self.showingDatePickerView = showingDatePickerView
     }
+    func deleteItems(at offsets: IndexSet) {
+        // Get the indices of the items to be deleted
+//        let indicesToDelete = Array(offsets)
+//        
+//        // Use the indices to find the corresponding objects in the array
+//        let itemsToDelete = indicesToDelete.map { scoreViewModel.scoreList[$0] }
+//        
+//        // Call the ScoreViewModel to delete the items
+//        scoreViewModel.deleteScore(score: itemsToDelete[0])
+//
+//        // Remove the items from the array
+//        scoreViewModel.scoreList.remove(atOffsets: offsets)
+        for index in offsets {
+            let deletedScore = scoreViewModel.scoreList[index]
+            scoreViewModel.deleteScore(score: deletedScore)
+            }
+        scoreViewModel.scoreList.remove(atOffsets: offsets)
+    }
+
     var body: some View {
         VStack{
             TitleHeader(text: "Settings")
@@ -51,7 +70,9 @@ struct SettingsView: View {
                         Spacer()
                         Button(action: {
                             if(userViewModel.user.firstName != firstName || userViewModel.user.lastName != lastName || userViewModel.user.birthday != birthday){
-                                userViewModel.user = User(firstName: firstName, lastName: lastName, birthday: birthday)
+                                let updatedUser = User(firstName: firstName, lastName: lastName, birthday: birthday)
+                                userViewModel.user = updatedUser
+                                userViewModel.updateUseR(user: updatedUser)
                             }
                         }, label: {
                             Text("Save Changes")
@@ -63,11 +84,20 @@ struct SettingsView: View {
             .frame(maxWidth: 500, maxHeight: 600)
             .cornerRadius(20.0)
             .padding()
-            ScrollView {
-                ForEach(scoreViewModel.scoreList, id: \.text) { item in
-                    Text("Quiz: \(item.subject) \(item.score)")
-                }
-            }
+          //  ScrollView {
+                
+                    List{
+                        ForEach(scoreViewModel.scoreList, id: \.id) { item in
+                            ScrollListItemComponent(text: "Quiz: \(item.subject) \(item.grade)")
+                        }.onDelete(perform: { indexSet in
+                            
+                            deleteItems(at: indexSet)
+                        })
+                       // .onDelete.onDelete( perform: deleteItems)
+                    }
+                  
+                
+          //  }
             .frame(maxWidth: 500)
             .background(Color(.white))
             .cornerRadius(20.0)
@@ -76,8 +106,10 @@ struct SettingsView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.white)
     }
+
 }
 
-#Preview {
-    SettingsView()
-}
+
+//#Preview {
+//    SettingsView()
+//}

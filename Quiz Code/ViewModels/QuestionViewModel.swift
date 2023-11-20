@@ -10,6 +10,7 @@ import SwiftUI
 class QuestionViewModel : ObservableObject {
     private let quizService = QuizAcessService()
     //@Published var questions: [Question]?
+    
     @Published var showResults = false
     @Published var quizInProgress = false
     var questionsDidChange: (() -> Void)?

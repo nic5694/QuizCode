@@ -10,7 +10,9 @@ import SwiftUI
 struct ResultsPage: View {
     @EnvironmentObject var questionViewModel: QuestionViewModel
     @EnvironmentObject var userViewModel: UserViewModel
+    @EnvironmentObject var scoreViewModel: ScoreViewModel
     var results: String
+    var subject: String
     func calculateScore()-> String{
         let components = results.components(separatedBy: "/")
         guard components.count == 2, let numerator = Int(components[0]), let denominator = Int(components[1]) else {
@@ -31,8 +33,11 @@ struct ResultsPage: View {
 //            SupportingTitleText(text: "Please try again if you didn't get 100")
           
             Button(action:{
+                
                 questionViewModel.showResults.toggle()
                 questionViewModel.quizInProgress.toggle()
+                var result = Score(subject: subject, grade: results)
+                scoreViewModel.addScore(score: result)
 //                NavigationLink(destination: {
 //                    HomePage(user: userViewModel.user)
 //                }, label: {})
@@ -49,5 +54,5 @@ struct ResultsPage: View {
 }
 
 #Preview {
-    ResultsPage(results: "15/20")
+    ResultsPage(results: "15/20",subject: "Linux")
 }

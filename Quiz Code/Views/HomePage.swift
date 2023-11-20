@@ -13,7 +13,9 @@ struct HomePage: View {
     @EnvironmentObject var questionViewModel:QuestionViewModel
     init(user: User) {
         self.user = user
+        _scoreViewModel = StateObject(wrappedValue: ScoreViewModel())
         _userViewModel = StateObject(wrappedValue: UserViewModel(user: user))
+        userViewModel.addUser(user: user)
     }
     var body: some View {
         NavigationStack{
@@ -33,7 +35,7 @@ struct HomePage: View {
                                         HStack{
                                             Text("Hi \(userViewModel.user.firstName), please select the subject you would like to test yourself on.").supportingTitleTextOnBlueBackgroundStyle()
                                             NavigationLink{
-                                                SettingsView()
+                                                SettingsView(firstName: user.firstName, lastName: user.lastName, birthday: user.birthday)
                                             } label: {
                                                 AnimationGear()
                                                     .tint(.white)
@@ -66,7 +68,8 @@ struct HomePage: View {
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .environmentObject(userViewModel, scoreViewModel)
+            .environmentObject(userViewModel)
+            .environmentObject(scoreViewModel)
         
     }
 }

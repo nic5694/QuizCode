@@ -13,11 +13,11 @@ struct Quiz_CodeApp: App {
     init(){
         FirebaseApp.configure()
     }
-   // @StateObject private var quizCodeViewModel = QuestionViewModel()
+    @StateObject private var quizCodeViewModel = QuestionViewModel()
     var body: some Scene {
         WindowGroup {
             ContentView()
-           //     .environmentObject(quizCodeViewModel)
+                .environmentObject(quizCodeViewModel)
                 .background(Color.white)
         }
     }

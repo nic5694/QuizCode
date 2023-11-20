@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SignUpPage: View {
+    
     @State private var firstName: String = ""
     @State private var lastName: String = ""
     @State private var birthday: Date = Date.now
@@ -15,8 +16,10 @@ struct SignUpPage: View {
     @State private var isLinkActive = false
     @State private var showHomeView = false
     @State private var username: String = ""
+    
  //   @EnvironmentObject var viewModel: UserViewModel
     let dateFormatter = DateFormatter()
+    
     var body: some View {
         NavigationStack{
             VStack {

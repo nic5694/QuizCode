@@ -5,7 +5,7 @@
 //  Created by nic on 2023-11-20.
 //
 //import FirebaseFirestore
-import FirebaseFireStoreSwift
+import FirebaseFirestoreSwift
 
 struct Score: Identifiable, Codable {
     @DocumentID var id: String?

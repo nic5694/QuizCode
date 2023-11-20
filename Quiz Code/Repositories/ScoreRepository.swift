@@ -12,7 +12,9 @@ class ScoreRepository: ObservableObject {
     @Published var list: [Score] = []
     private let path = "scores"
     private let store = Firestore.firestore()
-    
+    init() {
+        getAll()
+    }
     func getAll(){
         store.collection(path).addSnapshotListener{snapshot, error in
             if let error  = error {
@@ -32,7 +34,7 @@ class ScoreRepository: ObservableObject {
         }
     }
     func update(_ score: Score) {
-        if let documentId = todo.id {
+        if let documentId = score.id {
             store.collection(path).document(documentId).setData(["grade": score.grade, "subject": score.subject], merge: true)
         }
     }
