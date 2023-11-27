@@ -41,8 +41,8 @@ struct SettingsView: View {
     }
     
     var body: some View {
-        VStack{
-            TitleHeader(text: "Settings")
+        NavigationStack{
+            
             Form{
                 Section(header: Text("User Information")){
                     LabeledContent{
@@ -60,46 +60,40 @@ struct SettingsView: View {
                     } label: {
                         Text("Last Name: ")
                     }
-                        HStack(alignment: .center){
-                            Button(action: {
-                                let updatedUser = User(firstName: firstName, lastName: lastName, userName: userName)
-                                userViewModel.user = updatedUser
-                                userViewModel.tobeUpdatedUser = updatedUser
-                                userViewModel.updateUser()
-                             //   userViewModel.updateUser(user: updatedUser)
-                            }, label: {
-                                Text("Save Changes")
-                            })
-                            Spacer()
-                        }
+                    HStack(alignment: .center){
+                        Button(action: {
+                            let updatedUser = User(firstName: firstName, lastName: lastName, userName: userName)
+                            userViewModel.user = updatedUser
+                            userViewModel.tobeUpdatedUser = updatedUser
+                            userViewModel.updateUser()
+                            //   userViewModel.updateUser(user: updatedUser)
+                        }, label: {
+                            Text("Save Changes")
+                        })
+                    }
                     
                 }
-                .frame(maxWidth: 500, maxHeight: 500)
-                .cornerRadius(20.0)
-                .padding()
-                //  ScrollView {
-                
-                List{
+            }
+            .frame(maxWidth: 500, maxHeight: 400)
+            .cornerRadius(20.0)
+            .padding()
+            //  ScrollView {
+            List{
+                ScrollView{
                     ForEach(scoreViewModel.scoreList, id: \.id) { item in
                         ScrollListItemComponent(text: "Quiz: \(item.subject) \(item.grade)")
                     }.onDelete(perform: { indexSet in
-                        
                         deleteItems(at: indexSet)
                     })
-                    // .onDelete.onDelete( perform: deleteItems)
-                }
-                
-                
-                //  }
-                .frame(maxWidth: 500)
-                .background(Color(.white))
-                .cornerRadius(20.0)
-                .padding()
+                    .background(Color(.white))
+                    .cornerRadius(20.0)
+                    .padding()
+                }.frame(maxHeight: 310)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.white)
         }
-        
+       // .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.white)
+        .navigationTitle("Settings")
     }
     
     

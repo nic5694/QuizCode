@@ -41,11 +41,12 @@ struct QuizQuestionOrchestrationComponent: View {
             QuizQuestionComponent(question: questionViewModel.questions![self.index], selected: $value);
         }
             Button (action: {
-                userAnswers.append(value)
-                self.index+=1
-                print(userAnswers)
-                showResultsCheck()
-                
+                if(value != ""){
+                    userAnswers.append(value)
+                    self.index+=1
+                    print(userAnswers)
+                    showResultsCheck()
+                }
             }, label: {
                 
                 NavigationLink {

@@ -30,6 +30,31 @@ struct Question: Identifiable, Decodable {
     var isMultipleCorrectAnswers: Bool {
             return multiple_correct_answers.lowercased() == "true"
         }
+    init(id: Int, question: String, description: String?, answers: [String : String?], multiple_correct_answers: String, correct_answers: [String : String], correct_answer: String?, explanation: String?, tip: String?, tags: [Tag]?, category: String, difficulty: String) {
+        self.id = id
+        self.question = question
+        self.description = description
+        self.multiple_correct_answers = multiple_correct_answers
+        self.correct_answers = correct_answers
+        self.correct_answer = correct_answer
+        self.explanation = explanation
+        self.tip = tip
+        self.tags = tags
+        self.category = category
+        self.difficulty = difficulty
+        
+        var newAnswersArray = [String:String]()
+        
+        for (key, value) in answers {
+            if let unwrappedValue = value, !unwrappedValue.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                newAnswersArray[key] = unwrappedValue
+            }
+        }
+        
+        self.answers = newAnswersArray
+    }
+
+
 }
 
 struct Tag: Decodable {

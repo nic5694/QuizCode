@@ -10,7 +10,7 @@ import SwiftUI
 struct QuizQuestionComponent: View {
     var question: Question
     var options: [String]
-    @EnvironmentObject var viewModel: QuestionViewModel
+    @EnvironmentObject var questionViewModel: QuestionViewModel
     @Binding var selected: String
     init(question: Question, selected: Binding<String>) {
         self.question = question
@@ -30,41 +30,26 @@ struct QuizQuestionComponent: View {
     var body: some View {
         NavigationStack{
             VStack{
-                TitleHeader(text: question.question)
-                SupportingTitleText(text: question.description ?? "")
-                Picker("Question", selection: $selected) {
-                    ForEach(Array(question.answers.keys.sorted()), id: \.self) { answerKey in
-                        if(question.answers[answerKey] != nil) {
-                           // Text((question.answers[answerKey])! ?? "").tag(question.id)
-                            if let answer = question.answers[answerKey] {
-                                if(answer != nil || answer != ""){
-                                    Text(answer ?? "").tag(answerKey)
-                                }
-                            }
-                        }
-                      // Text((question.answers[answerKey])! ?? "").tag(answerKey)
-                       // Text(((question.answers[answerKey] ?? "") ?? "")).tag(answerKey)
-                       
-                    }
-                }
-                
-               
-//                let selectedValue = question.answers[Array(question.answers.keys)[selectedOptionIndex]] ?? ""
-
-//                {
-//
-//                   
-//                    
-//                } label: {
-//                    Text("Next")
+                Text(question.question).titleHeaderOnWhiteBackgroundStyle()
+                Text(question.description ?? "").supportingTitleTextOnWhiteBackgroundStyle()
+                AnswerPicker(question: self.question, selected: $selected)
+//                Picker("Question", selection: $selected) {
+//                    ForEach(Array(question.answers.keys.sorted()), id: \.self) { answerKey in
+//                        if let answer = question.answers[answerKey],
+//                           ((answer?.contains(where: { $0.isLetter || $0.isNumber || $0.isSymbol })) != nil) {
+//                            Text(answer ?? "").tag(answerKey)
+//                        }
+//                    }
 //                }
             }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color("DarkGreen"))
+                .background(Color("BackgroundComponentWhite"))
         }
     }
 }
 
-//#Preview {
-//    QuizQuestionComponent(question: Question(id: 1, question: "What is Docker?", description: "Docker is a platform for developing, shipping, and running applications in containers.", answers: ["A": "A containerization technology", "B": "A version control system", "C": "A database management system", "D": "A cloud computing platform"], multiple_correct_answers: false, correct_answers: ["A": true], explanation: "Docker is a containerization technology that allows you to package and run applications and their dependencies in isolated containers.", category: "DevOps", tags: , difficulty: "Medium", correctAnswer: "A cloud computing platform"))
-//    }
+
+#Preview {
+    QuizQuestionComponent(question: Question(id: 6, question: "What", description: "This is a description", answers: ["0": "tsrt", "test": "Test"], multiple_correct_answers: "false", correct_answers: ["0": "test"], correct_answer: "Test", explanation: "This is the explanation", tip: "tip of the day", tags: [], category: "Coding", difficulty: "easy"), selected: Binding.constant("test"))
+    
+    }
 

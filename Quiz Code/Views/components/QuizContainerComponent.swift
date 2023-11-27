@@ -50,6 +50,7 @@ struct QuizContainerComponent: View {
                             questionViewModel.retreiveQuestions(nbOfQuestions: numberOfQuestions, category: "", difficulty: selectedDifficulty, tags: title)
                             
                         }
+                      //  numberOfQuestions = 10
                         questionViewModel.currentQuizQuestionNum = 0
                        // questionViewModel.quizInProgress.toggle()
                     }, label: {

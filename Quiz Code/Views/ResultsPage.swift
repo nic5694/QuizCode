@@ -33,9 +33,9 @@ struct ResultsPage: View {
 //            SupportingTitleText(text: "Please try again if you didn't get 100")
           
             Button(action:{
-                
-                questionViewModel.showResults.toggle()
                 questionViewModel.quizInProgress.toggle()
+                questionViewModel.showResults.toggle()
+                questionViewModel.questions = []
                 var result = Score(subject: subject, grade: results)
                 scoreViewModel.addScore(score: result)
 //                NavigationLink(destination: {
