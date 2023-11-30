@@ -52,7 +52,7 @@ struct SignUpPage: View {
             .cornerRadius(20.0)
             .padding()
             Button(action: {
-                userViewModel.addUser(user: User(firstName: firstName, lastName: lastName, userName: username))
+                /*userViewModel.addUser(user: User(firstName: firstName, lastName: lastName, userName: username))*/
                 showHomeView.toggle()
             }, label: {
                 Text("Continue")

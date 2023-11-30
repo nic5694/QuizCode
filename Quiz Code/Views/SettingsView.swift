@@ -8,19 +8,20 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @EnvironmentObject var userViewModel:UserViewModel
+    @EnvironmentObject var userViewModel: UserViewModel
     @EnvironmentObject var questionViewModel: QuestionViewModel
     @EnvironmentObject var scoreViewModel: ScoreViewModel
-    @State var firstName: String
-    @State var lastName: String
-    @State var userName: String
+    @State var firstName: String = ""
+    @State var lastName: String = ""
+    @State var userName: String = ""
     
-    init(firstName: String, lastName: String, userName: String) {
-        _firstName = State(initialValue: firstName)
-        _lastName = State(initialValue: lastName)
-        _userName = State(initialValue: userName)
-        // _birthday = State(initialValue: birthday)
-    }
+//    init(firstName: String, lastName: String, userName: String) {
+//        _firstName = State(initialValue: userViewModel.user.firstName)
+//        _lastName = State(initialValue: userViewModel.user.lastName)
+//        _userName = State(initialValue: userViewModel.user.userName)
+//        self.firstName = userViewModel.
+       // _birthday = State(initialValue: birthday)
+//    }
     func deleteItems(at offsets: IndexSet) {
         // Get the indices of the items to be deleted
         //        let indicesToDelete = Array(offsets)
@@ -63,7 +64,6 @@ struct SettingsView: View {
                     HStack(alignment: .center){
                         Button(action: {
                             let updatedUser = User(firstName: firstName, lastName: lastName, userName: userName)
-                            userViewModel.user = updatedUser
                             userViewModel.tobeUpdatedUser = updatedUser
                             userViewModel.updateUser()
                             //   userViewModel.updateUser(user: updatedUser)
@@ -94,6 +94,12 @@ struct SettingsView: View {
        // .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.white)
         .navigationTitle("Settings")
+        .onAppear{
+            self.firstName = userViewModel.user.firstName//userRepo.
+            self.lastName = userViewModel.user.firstName//.userRepo.user.lastName
+            self.userName = userViewModel.user.userName//userRepo.
+            print("In the on appear this is the user \(userViewModel.user)")
+        }
     }
     
     

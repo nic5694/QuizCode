@@ -36,7 +36,9 @@ struct HomePage: View {
                                         HStack{
                                             Text("Hi \(userViewModel.user.firstName), please select the subject you would like to test yourself on.").supportingTitleTextOnBlueBackgroundStyle()
                                             NavigationLink{
-                                                SettingsView(firstName: userViewModel.user.firstName, lastName: userViewModel.user.lastName, userName: userViewModel.user.userName)
+                                                SettingsView(
+//                                                    firstName: userViewModel.user.firstName, lastName: userViewModel.user.lastName, userName: userViewModel.user.userName
+                                                )
                                             } label: {
                                                 AnimationGear()
                                                     .tint(.white)

@@ -11,13 +11,18 @@ class UserRepository: ObservableObject {
     static var shared = UserRepository()
     @Published var user: User
     private let path = "users"
-    private let userId = "XIfDysYpAcIkwmiqACO6"
+    private let userId = "eWoZKhWGLCyUNLUEVUjN"
     private let store = Firestore.firestore()
     @Published var tempList: [User] = []
     init() {
        self.user  = User(firstName: "", lastName: "", userName: "")
-        //get()
-        getBasicUser()
+        print("THis is before the user is assigned \(self.user)")
+      //  self.user = getDocumentById(userId)
+        getDocumentById(userId)
+        print("This is after the user is assigned \(self.user)")
+//        get()
+//       // getBasicUser()
+//        print("This is the user: \(self.user)")
        // getAll()
     }
 //    func getBasicUser() {
@@ -44,29 +49,29 @@ class UserRepository: ObservableObject {
 //            }
 //     //   }
 //    }
-    func getBasicUser() {
-        let usersRef = store.collection(path)
-        let query = usersRef.whereField("firstName", isEqualTo: "John")
-        
-        query.getDocuments() { (querySnapshot, error) in
-            if let error = error {
-                print("Error getting documents: \(error)")
-                return
-            }
-
-            guard let document = querySnapshot?.documents.first else {
-                print("No documents found.")
-                return
-            }
-
-            do {
-                self.tempList.append(try document.data(as: User.self))
-                print("USER: \(self.user)")
-            } catch {
-                print("Error decoding user: \(error)")
-            }
-        }
-    }
+//    func getBasicUser() {
+//        let usersRef = store.collection(path)
+//        let query = usersRef.whereField("firstName", isEqualTo: "John")
+//        
+//        query.getDocuments() { (querySnapshot, error) in
+//            if let error = error {
+//                print("Error getting documents: \(error)")
+//                return
+//            }
+//
+//            guard let document = querySnapshot?.documents.first else {
+//                print("No documents found.")
+//                return
+//            }
+//
+//            do {
+//                self.tempList.append(try document.data(as: User.self))
+//                print("USER: \(self.user)")
+//            } catch {
+//                print("Error decoding user: \(error)")
+//            }
+//        }
+//    }
 
 //    func getBasicUser(){
 //        let usersRef = store.collection(path)
@@ -106,12 +111,37 @@ class UserRepository: ObservableObject {
                 
                 do {
                     if let userDocument = snapshot.documents.first {
-                       // self.user = try userDocument.data(as: User.self)
+                        self.user = try userDocument.data(as: User.self)
                     }
                 } catch {
                     print("Error decoding user: \(error.localizedDescription)")
                 }
             }
+    }
+    
+    func getDocumentById(_ documentId: String){ //-> User {
+   //     var user: User
+        store.collection(path).document(documentId)
+            .getDocument { document, error in
+                if let error = error {
+                    print("Error getting document: \(error.localizedDescription)")
+                    return
+                }
+                
+                guard let document = document, document.exists else {
+                    print("Document with ID \(documentId) does not exist.")
+                    return
+                }
+                
+                do {
+                    self.user  = try document.data(as: User.self)
+                    print("This is tmep user: \(self.user)")
+                    print("Successfully retrieved user: \(self.user)")
+                } catch {
+                    print("Error decoding user: \(error.localizedDescription)")
+                }
+            }
+            //  return user
     }
     func getAll(){
 //       @State var tempList: [User] = []
@@ -128,18 +158,25 @@ class UserRepository: ObservableObject {
         //user = self.$tempList[0]
     }
 
-    func add(_ user: User){
+    func add(_ user: User) {
+        var documentReference: DocumentReference?  // Declare documentReference outside the closure
         do {
-            _ = try store.collection(path).addDocument(from: user)
-        }catch {
+            documentReference = try store.collection(path).addDocument(from: user) { error in
+                if let error = error {
+                    print("Error adding document: \(error)")
+                } else if let documentReference = documentReference {
+                    print("Document added with ID: \(documentReference.documentID)")
+//                    self.getDocumentById(documentReference.documentID)
+                    // Here, you can use documentReference.documentID as needed
+                }
+            }
+        } catch {
+            print("Error encoding user: \(error)")
             
         }
     }
     func update(_ user: User) {
-        print("This is the id i am receiving in the updateeeeee: \(user.id)")
-       // if let documentId = user.id {
-            store.collection(path).document("wvpArqTGxhLmgaYOkuk8").setData(["firstName": user.firstName, "lastName": user.lastName, "userName": user.userName], merge: true)
-     //   }
+        store.collection(path).document(self.userId).setData(["firstName": user.firstName, "lastName": user.lastName, "userName": user.userName], merge: true)
     }
 
 
