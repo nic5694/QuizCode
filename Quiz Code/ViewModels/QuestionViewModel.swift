@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 class QuestionViewModel : ObservableObject {
     private let quizService = QuizAcessService()
-    //@Published var questions: [Question]?
     
     @Published var showResults = false
     @Published var quizInProgress = false
@@ -21,7 +20,6 @@ class QuestionViewModel : ObservableObject {
         }
     }
     @Published var currentQuizProgress : [String]?
- //   @Published var quizScreenCover = false
     @Published var isQuizStarted: Bool = false
     @Published var currentQuizQuestionNum: Int = 0
     @Published var scrollListItem: [ScrollListItemComponent] = [
@@ -62,55 +60,6 @@ class QuestionViewModel : ObservableObject {
         
         print("Size of the questions array: \(self.questions?.count ?? 0)")
     }
-//    func retreiveQuestions(nbOfQuestions: Int, category: String? = nil, difficulty: String, tags: String? = nil){
-//        print("before the if in the view model")
-//        if(category == nil || category == "" && tags != nil){
-//            print("In the first if")
-//            quizService.getQuestions(quantity: nbOfQuestions, category: "", difficulty: difficulty, tags: tags!){
-//                item in
-//                print("Adding items to the array, item: \(item)")
-//                DispatchQueue.main.async{
-//                    self.questions?.append(contentsOf: item)
-//                }
-//            }
-//        } else if (category != nil && tags == nil){
-//            print("In the second if for tags")
-//            quizService.getQuestions(quantity: nbOfQuestions, category: category!, difficulty: difficulty, tags: ""){
-//                item in
-//                print("Adding items to the array, item: \(item)")
-//                DispatchQueue.main.async{
-//                    self.questions?.append(contentsOf: item)
-//                }
-//                print("Size of the questions now: \(self.questions?.count)")
-//            }
-//        } else{
-//            print("Nothing fit in")
-//            return
-//        }
-//        
-//
-////        quizService.getQuestions(quantity: 10, category: "Linux", difficulty: "easy"){
-////            item in
-////            DispatchQueue.main.async{
-////                self.questions?.append(contentsOf: item)
-////            }
-////        }
-//        print("Size of the questions array: \(self.questions?.count)")
-//    }
-//    func getScore(userAnswers: [String: String],answers: [String]) -> String{
-//        var correctCount = 0
-//        let totalQuestions = userAnswers.count
-//        
-//        for (question, userAnswer) in userAnswers {
-//            if let correctAnswer = answers[question] {
-//                if userAnswer == correctAnswer {
-//                    correctCount += 1
-//                }
-//            }
-//        }
-//        return "\(correctCount) / \(totalQuestions)"
-//    }
-
     func getAnswerArray() -> [String]{
         var answer: [String] = []
         for question in questions!{

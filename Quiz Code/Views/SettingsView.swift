@@ -14,26 +14,7 @@ struct SettingsView: View {
     @State var firstName: String = ""
     @State var lastName: String = ""
     @State var userName: String = ""
-    
-//    init(firstName: String, lastName: String, userName: String) {
-//        _firstName = State(initialValue: userViewModel.user.firstName)
-//        _lastName = State(initialValue: userViewModel.user.lastName)
-//        _userName = State(initialValue: userViewModel.user.userName)
-//        self.firstName = userViewModel.
-       // _birthday = State(initialValue: birthday)
-//    }
     func deleteItems(at offsets: IndexSet) {
-        // Get the indices of the items to be deleted
-        //        let indicesToDelete = Array(offsets)
-        //
-        //        // Use the indices to find the corresponding objects in the array
-        //        let itemsToDelete = indicesToDelete.map { scoreViewModel.scoreList[$0] }
-        //
-        //        // Call the ScoreViewModel to delete the items
-        //        scoreViewModel.deleteScore(score: itemsToDelete[0])
-        //
-        //        // Remove the items from the array
-        //        scoreViewModel.scoreList.remove(atOffsets: offsets)
         for index in offsets {
             let deletedScore = scoreViewModel.scoreList[index]
             scoreViewModel.deleteScore(score: deletedScore)
@@ -77,7 +58,6 @@ struct SettingsView: View {
             .frame(maxWidth: 500, maxHeight: 400)
             .cornerRadius(20.0)
             .padding()
-            //  ScrollView {
             List{
                 ScrollView{
                     ForEach(scoreViewModel.scoreList, id: \.id) { item in
@@ -91,7 +71,6 @@ struct SettingsView: View {
                 }.frame(maxHeight: 310)
             }
         }
-       // .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.white)
         .navigationTitle("Settings")
         .onAppear{
@@ -101,9 +80,4 @@ struct SettingsView: View {
             print("In the on appear this is the user \(userViewModel.user)")
         }
     }
-    
-    
-    //#Preview {
-    //    SettingsView()
-    //}
 }

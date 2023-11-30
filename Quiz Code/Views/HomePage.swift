@@ -15,8 +15,6 @@ struct HomePage: View {
         
         self.user = user
         _scoreViewModel = StateObject(wrappedValue: ScoreViewModel())
-      //  _userViewModel = StateObject(wrappedValue: UserViewModel(/*user: user)*/))
-        //userViewModel.addUser(user: user)
     }
     var body: some View {
         NavigationStack{

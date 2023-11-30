@@ -26,21 +26,15 @@ struct ResultsPage: View {
     }
     var body: some View {
         VStack{
-//            TitleHeader(text: "Results: \(viewModel.getScore(userAnswers: ["A": "ls", "B":"ls-l"], answers: ["A" : "cd", "B": "ls-l"]))")
             Text("Results: \(results)").titleHeaderOnWhiteBackgroundStyle()
             
             Text(calculateScore()).supportingTitleTextOnWhiteBackgroundStyle()
-//            SupportingTitleText(text: "Please try again if you didn't get 100")
-          
             Button(action:{
                 questionViewModel.quizInProgress.toggle()
                 questionViewModel.showResults.toggle()
                 questionViewModel.questions = []
                 var result = Score(subject: subject, grade: results)
                 scoreViewModel.addScore(score: result)
-//                NavigationLink(destination: {
-//                    HomePage(user: userViewModel.user)
-//                }, label: {})
             }, label: {
                 Text("Back to home!")
             })
