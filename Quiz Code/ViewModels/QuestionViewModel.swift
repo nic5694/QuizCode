@@ -22,16 +22,25 @@ class QuestionViewModel : ObservableObject {
     @Published var currentQuizProgress : [String]?
     @Published var isQuizStarted: Bool = false
     @Published var currentQuizQuestionNum: Int = 0
-    @Published var scrollListItem: [ScrollListItemComponent] = [
-        ScrollListItemComponent(text: "Quiz: Linux 13/15"),
-        ScrollListItemComponent(text: "Quiz: Docker 15/15"),
-        ScrollListItemComponent(text: "Quiz: PHP 20/20"),
-        ScrollListItemComponent(text: "Quiz: JavaScript 17/20"),
-        ScrollListItemComponent(text: "Quiz: HTML 5/5"),
-        ScrollListItemComponent(text: "Quiz: Python 11/20"),
-        ScrollListItemComponent(text: "Quiz: Linux 1/1"),
-        ScrollListItemComponent(text: "Quiz: HTML 7/7")
-    ]
+//    @Published var scrollListItem: [ScrollListItemComponent] = [
+//        ScrollListItemComponent(text: "Quiz: Linux 13/15"),
+//        ScrollListItemComponent(text: "Quiz: Docker 15/15"),
+//        ScrollListItemComponent(text: "Quiz: PHP 20/20"),
+//        ScrollListItemComponent(text: "Quiz: JavaScript 17/20"),
+//        ScrollListItemComponent(text: "Quiz: HTML 5/5"),
+//        ScrollListItemComponent(text: "Quiz: Python 11/20"),
+//        ScrollListItemComponent(text: "Quiz: Linux 1/1"),
+//        ScrollListItemComponent(text: "Quiz: HTML 7/7")
+//    ]
+    private let latestQuizKey = "latestQuiz"
+    var latestQuiz: String {
+            get {
+                return UserDefaults.standard.string(forKey: latestQuizKey) ?? ""
+            }
+            set {
+                UserDefaults.standard.set(newValue, forKey: latestQuizKey)
+            }
+        }
     
     func retreiveQuestions(nbOfQuestions: Int, category: String? = nil, difficulty: String, tags: String? = nil) {
         print("before the if in the view model")

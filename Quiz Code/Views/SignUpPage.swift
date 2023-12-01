@@ -22,12 +22,13 @@ struct SignUpPage: View {
     init(){
 //        self.firstName = viewModel.user.firstName
             //   self.lastName = v
+        
     }
     var body: some View {
         NavigationStack{
             VStack {
-                TitleHeader(text: "Welcome to Quiz Code")
-                SupportingTitleText(text: "Please enter your information below")
+                Text("Welcome to Quiz Code").titleHeaderOnWhiteBackgroundStyle()
+                Text("Please enter your information below").supportingTitleTextOnWhiteBackgroundStyle()
                 Form{
                     Section(header: Text("User Information")){
                         LabeledContent{
@@ -52,16 +53,20 @@ struct SignUpPage: View {
             .cornerRadius(20.0)
             .padding()
             Button(action: {
-                /*userViewModel.addUser(user: User(firstName: firstName, lastName: lastName, userName: username))*/
-                showHomeView.toggle()
+                userViewModel.updateUser(User(firstName: firstName, lastName: lastName, userName: username))
+                    showHomeView.toggle()
             }, label: {
                 Text("Continue")
             }).padding()
                 .fullScreenCover(isPresented: $showHomeView) {
-                    HomePage(user: User(firstName: firstName, lastName: lastName, userName: username))
+                    HomePage(/*user: User(firstName: firstName, lastName: lastName, userName: username)*/)
                 }
         }.frame(maxWidth: .infinity, maxHeight: .infinity).background(Color.white)
+           
+
     }
+        
+       
 }
 
 

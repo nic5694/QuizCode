@@ -6,11 +6,13 @@
 //
 
 import Combine
+import Foundation
 class UserViewModel: ObservableObject {
     @Published var user : User
     @Published var userList = [User]()
     @Published var tobeUpdatedUser = User(firstName: "", lastName: "", userName: "")
     @Published var userRepo: UserRepository = UserRepository.shared
+   
     private var cancellables: Set<AnyCancellable> = []
     init() {
         
@@ -27,7 +29,8 @@ class UserViewModel: ObservableObject {
         self.user = user
         self.userRepo.add(user)
     }
-    func updateUser(){
-        self.userRepo.update(tobeUpdatedUser)
+    func updateUser(_ user:User){
+        self.user = user
+        self.userRepo.update(user)
     }
 }

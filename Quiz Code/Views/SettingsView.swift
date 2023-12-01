@@ -44,10 +44,11 @@ struct SettingsView: View {
                     }
                     HStack(alignment: .center){
                         Button(action: {
-                            let updatedUser = User(firstName: firstName, lastName: lastName, userName: userName)
-                            userViewModel.tobeUpdatedUser = updatedUser
-                            userViewModel.updateUser()
-                            //   userViewModel.updateUser(user: updatedUser)
+                            if(userViewModel.tobeUpdatedUser.firstName != firstName ||
+                               userViewModel.tobeUpdatedUser.lastName != lastName ||
+                                userViewModel.tobeUpdatedUser.userName != userName) {
+                                    userViewModel.updateUser(User(firstName: firstName, lastName: lastName, userName: userName))
+                                }
                         }, label: {
                             Text("Save Changes")
                         })

@@ -14,7 +14,9 @@ struct QuizContainerComponent: View {
     @EnvironmentObject var questionViewModel: QuestionViewModel
     @State private var selectedDifficulty: String = ""
     @State private var numberOfQuestions: Int = 10
-   // @State private var test = false
+    @State private var latestTest: String = ""
+    
+    // @State private var test = false
     var body: some View {
         VStack{
             VStack{
@@ -31,7 +33,7 @@ struct QuizContainerComponent: View {
                 Text("Please select your difficulty level.")
                     .frame(width: 300,height: 34)
                     .foregroundStyle(Color.black)
-                    
+                
                 
                 DifficultySelector(selectedDifficulty: $selectedDifficulty)
                 
@@ -50,33 +52,34 @@ struct QuizContainerComponent: View {
                             questionViewModel.retreiveQuestions(nbOfQuestions: numberOfQuestions, category: "", difficulty: selectedDifficulty, tags: title)
                             
                         }
-                      //  numberOfQuestions = 10
                         questionViewModel.currentQuizQuestionNum = 0
-                       // questionViewModel.quizInProgress.toggle()
+                        latestTest = title 
+                        UserDefaults.standard.set(latestTest, forKey: "latestQuiz")
                     }, label: {
                         Text("Start")
                     }).fullScreenCover(isPresented: $questionViewModel.quizInProgress){
-                        //QuizQuestionComponent(question: questionViewModel.questions![0])
                         QuizQuestionOrchestrationComponent()
+                       
                     }
-                    .onAppear{
-                        // Use didSet observer to trigger when questions are set
-                        questionViewModel.questionsDidChange = {
-                            if let questions = questionViewModel.questions, !questions.isEmpty {
-                                questionViewModel.quizInProgress.toggle()
-                              //  test.toggle()
-                            }
+                    
+                }
+                .onAppear{
+                    questionViewModel.questionsDidChange = {
+                        if let questions = questionViewModel.questions, !questions.isEmpty {
+                            questionViewModel.quizInProgress.toggle()
                         }
                     }
                 }
-                Spacer()
             }
+            Spacer()
         }
         .frame(width: 360, height: 450)
         .background(Color("BackgroundComponentWhite"))
         .padding(.leading)
     }
-      
+    
+    
+    
 }
 
 #Preview {
