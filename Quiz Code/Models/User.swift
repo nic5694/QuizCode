@@ -5,22 +5,6 @@
 ////  Created by nic on 2023-10-05.
 ////
 //
-//import SwiftUI
-//import FirebaseFirestoreSwift
-//struct User: Identifiable, Codable {
-//    @DocumentID var id: String?
-//    var firstName: String
-//    var lastName: String
-//    var userName: String
-//    init(firstName: String, lastName: String, userName: String) {
-//        self.firstName = firstName
-//        self.lastName = lastName
-//        self.userName = userName
-//    }
-//}
-//
-//
-
 import FirebaseFirestoreSwift
 
 struct User: Identifiable, Codable {

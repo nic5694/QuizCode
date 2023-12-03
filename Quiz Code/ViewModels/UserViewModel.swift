@@ -9,7 +9,6 @@ import Combine
 import Foundation
 class UserViewModel: ObservableObject {
     @Published var user : User
-  //  @Published var userList = [User]()
     @Published var tobeUpdatedUser = User(firstName: "", lastName: "", userName: "")
     @Published var userRepo: UserRepository = UserRepository.shared
    

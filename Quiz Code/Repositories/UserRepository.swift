@@ -22,7 +22,7 @@ class UserRepository: ObservableObject {
     }
 
     
-    func getDocumentById(_ documentId: String){ //-> User {
+    func getDocumentById(_ documentId: String){
         store.collection(path).document(documentId)
             .getDocument { document, error in
                 if let error = error {

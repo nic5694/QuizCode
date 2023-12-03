@@ -1,79 +1,10 @@
-////
-////  SignUpPage.swift
-////  Quiz Code
-////
-////  Created by nic on 2023-10-02.
-////
 //
-//import SwiftUI
+//  SignUpPage.swift
+//  Quiz Code
 //
-//struct SignUpPage: View {
-//    
-//    @State private var firstName: String = ""
-//    @State private var lastName: String = ""
-//    @State private var birthday: Date = Date.now
-//    @State private var showingDatePickerView = false
-//    @State private var isLinkActive = false
-//    @State private var showHomeView = false
-//    @State private var username: String = ""
-//    
-//    @EnvironmentObject var userViewModel: UserViewModel
-//    let dateFormatter = DateFormatter()
-//    init(){
-////        self.firstName = viewModel.user.firstName
-//            //   self.lastName = v
-//        
-//    }
-//    var body: some View {
-//        NavigationStack{
-//            VStack {
-//                Text("Welcome to Quiz Code").titleHeaderOnWhiteBackgroundStyle()
-//                Text("Please enter your information below").supportingTitleTextOnWhiteBackgroundStyle()
-//                Form{
-//                    Section(header: Text("User Information")){
-//                        LabeledContent{
-//                            TextField("superSmart5694", text: $username)
-//                        } label: {
-//                            Text("Username: ")
-//                        }.padding()
-//                        LabeledContent{
-//                            TextField("John", text: $firstName)
-//                        } label: {
-//                            Text("First Name: ")
-//                        }.padding()
-//                        LabeledContent{
-//                            TextField("Dhoe", text: $lastName)
-//                        } label: {
-//                            Text("Last Name: ")
-//                        }.padding()
-//                    }
-//                }
-//            }
-//            .frame(maxHeight: 450)
-//            .cornerRadius(20.0)
-//            .padding()
-//            Button(action: {
-//                userViewModel.updateUser(User(firstName: firstName, lastName: lastName, userName: username))
-//                    showHomeView.toggle()
-//            }, label: {
-//                Text("Continue")
-//            }).padding()
-//                .fullScreenCover(isPresented: $showHomeView) {
-//                    HomePage(/*user: User(firstName: firstName, lastName: lastName, userName: username)*/)
-//                }
-//        }.frame(maxWidth: .infinity, maxHeight: .infinity).background(Color.white)
-//           
-//
-//    }
-//        
-//       
-//}
+//  Created by nic on 2023-10-02.
 //
 //
-//
-//#Preview {
-//    SignUpPage()
-//}
 
 import SwiftUI
 
@@ -83,7 +14,9 @@ struct SignUpPage: View {
     @State private var username: String = ""
     @EnvironmentObject var userViewModel: UserViewModel
     @State private var showHomeView = false
-
+    @State private var showAlert = false
+    @State private var alertMessage = ""
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -91,12 +24,10 @@ struct SignUpPage: View {
                     .fill(Color.blue)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .edgesIgnoringSafeArea(.all)
-
                 Rectangle()
                     .fill(Color.white)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .edgesIgnoringSafeArea(.all)
-
                 VStack {
                     Text("Welcome to Quiz Code").titleHeaderOnWhiteBackgroundStyle()
                     Text("Please enter your information below").supportingTitleTextOnWhiteBackgroundStyle()
@@ -120,8 +51,12 @@ struct SignUpPage: View {
                             HStack{
                                 Spacer()
                                 Button(action: {
-                                    userViewModel.updateUser(User(firstName: firstName, lastName: lastName, userName: username))
-                                    showHomeView.toggle()
+                                    if isValidInput() {
+                                        userViewModel.updateUser(User(firstName: firstName, lastName: lastName, userName: username))
+                                        showHomeView.toggle()
+                                    } else {
+                                        showAlert = true
+                                    }
                                 }, label: {
                                     Text("Continue")
                                 })
@@ -132,20 +67,37 @@ struct SignUpPage: View {
                                 Spacer()
                             }
                         }
-
                     }
-
                 }
                 .frame(maxHeight: 540)
                 .cornerRadius(20.0)
                 .padding()
-
-
+                
+                
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("Invalid Input"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+        }
+    }
+    func isValidInput() -> Bool {
+        if username.isEmpty || firstName.isEmpty || lastName.isEmpty {
+            alertMessage = "Please fill in all fields."
+            return false
+        }
+        let specialCharacterSet = CharacterSet(charactersIn: "!@#$%^&*()-_=+[]{}|;:'\",.<>/?`~")
+                if username.rangeOfCharacter(from: specialCharacterSet) != nil ||
+                   firstName.rangeOfCharacter(from: specialCharacterSet) != nil ||
+                    lastName.rangeOfCharacter(from: specialCharacterSet) != nil {
+                    alertMessage = "Username, first name, and last name cannot contain special characters."
+                    return false
+                }
+        return true
     }
 }
+
+
 
 #Preview {
     SignUpPage()

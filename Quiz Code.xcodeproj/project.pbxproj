@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		67178EF92B1BDE8D003DF72D /* LatestQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67178EF82B1BDE8D003DF72D /* LatestQuiz.swift */; };
 		67178EFB2B1C1985003DF72D /* UserInformationFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67178EFA2B1C1985003DF72D /* UserInformationFormView.swift */; };
 		6721EB8D2B015BCC00C15D70 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6721EB8C2B015BCC00C15D70 /* UserViewModel.swift */; };
 		6721EB8F2B01689800C15D70 /* CustomStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6721EB8E2B01689800C15D70 /* CustomStyling.swift */; };
@@ -68,7 +67,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		67178EF82B1BDE8D003DF72D /* LatestQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestQuiz.swift; sourceTree = "<group>"; };
 		67178EFA2B1C1985003DF72D /* UserInformationFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationFormView.swift; sourceTree = "<group>"; };
 		6721EB8C2B015BCC00C15D70 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		6721EB8E2B01689800C15D70 /* CustomStyling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStyling.swift; sourceTree = "<group>"; };
@@ -244,7 +242,6 @@
 				67531D9A2ACF61A900EE9EE9 /* User.swift */,
 				672F446B2ADCCA6800E96C5B /* Question.swift */,
 				67E5C8512B0B2891006C1B85 /* Score.swift */,
-				67178EF82B1BDE8D003DF72D /* LatestQuiz.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -387,7 +384,6 @@
 				67178EFB2B1C1985003DF72D /* UserInformationFormView.swift in Sources */,
 				673A3A562AE0A25600C07A8D /* ResultsPage.swift in Sources */,
 				67531D842ACB553300EE9EE9 /* Quiz_CodeApp.swift in Sources */,
-				67178EF92B1BDE8D003DF72D /* LatestQuiz.swift in Sources */,
 				672F445E2ADC8D0800E96C5B /* AnimationGear.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

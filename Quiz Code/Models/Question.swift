@@ -60,16 +60,3 @@ struct Question: Identifiable, Decodable {
 struct Tag: Decodable {
     let name: String
 }
-//struct Question:Identifiable, Decodable {
-//    let id: Int
-//    let question: String
-//    let description: String?
-//    let answers: [String: String]
-//    let multiple_correct_answers: Bool
-//    let correct_answers: [String: Bool]
-//    let correctAnswer: String
-//    let explanation: String
-//    let tags: [String: String]?
-//    let category: String
-//    let difficulty: String
-//}

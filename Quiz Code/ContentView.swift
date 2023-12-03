@@ -8,16 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-    //@StateObject var userViewModel = UserViewModel()
-
-//    init(){
-//        _userViewModel = StateObject(wrappedValue: UserViewModel())
-//    }
     var body: some View {
         VStack {
             SignUpPage()
-     //           .environmentObject(userViewModel)
-
         }
         .padding()
     }

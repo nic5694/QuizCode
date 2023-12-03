@@ -42,21 +42,3 @@ class QuizAcessService {
         }
     }
 }
-
-//
-//import Foundation
-//class QuizAcessService {
-//    func getQuestions(quantity: Int, category: String, difficulty: String, _ completion: @escaping(Question) -> ()){
-//        let headers = [
-//            "Content-Type": "application/json",
-//            "X-Api-Key": (ProcessInfo.processInfo.environment["API_KEY"] ?? "") as String,
-//            "category":category,
-//            "limit":quantity as Int,
-//            "difficulty": difficulty] as [String : Any]
-//        Bundle.main.fetchData(url: "https://quizapi.io/api/v1/questions -G", model: Question.self, headers: headers) { data in
-//            completion(data)
-//        } failure: { error in
-//            print(error)
-//        }
-//    }
-//}

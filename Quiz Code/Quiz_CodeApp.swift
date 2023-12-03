@@ -14,7 +14,7 @@ struct Quiz_CodeApp: App {
         FirebaseApp.configure()
     }
     @StateObject private var quizCodeViewModel = QuestionViewModel()
-    @StateObject var userViewModel = UserViewModel(/*user: User(firstName: "", lastName: "", userName: "")*/)
+    @StateObject var userViewModel = UserViewModel()
     var body: some Scene {
         WindowGroup {
             ContentView()
