@@ -53,7 +53,7 @@ class QuestionViewModel : ObservableObject {
 
         for question in questions! {
             if let correctAnswers = question.correct_answers as? [String: String] {
-                // Iterate through all answers for the current question
+                // Iterate through all answers for the current questionGoog
                 for (answerKey, isCorrect) in correctAnswers {
                     // Check if the current answer is correct (considering "_correct" suffix)
                     if isCorrect == "true" && answerKey.hasSuffix("_correct") {
