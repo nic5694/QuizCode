@@ -33,14 +33,6 @@ struct QuizQuestionComponent: View {
                 Text(question.question).titleHeaderOnWhiteBackgroundStyle()
                 Text(question.description ?? "").supportingTitleTextOnWhiteBackgroundStyle()
                 AnswerPicker(question: self.question, selected: $selected)
-//                Picker("Question", selection: $selected) {
-//                    ForEach(Array(question.answers.keys.sorted()), id: \.self) { answerKey in
-//                        if let answer = question.answers[answerKey],
-//                           ((answer?.contains(where: { $0.isLetter || $0.isNumber || $0.isSymbol })) != nil) {
-//                            Text(answer ?? "").tag(answerKey)
-//                        }
-//                    }
-//                }
             }.frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color("BackgroundComponentWhite"))
         }

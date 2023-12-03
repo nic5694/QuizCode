@@ -31,7 +31,7 @@ struct CounterQuestionComponent: View {
             Text(value.description).supportingTitleTextOnWhiteBackgroundStyle()
            Spacer()
             Button(action: {
-                if value > 0 {
+                if value > 1 {
                     value -= 1
                 }
             }, label: {

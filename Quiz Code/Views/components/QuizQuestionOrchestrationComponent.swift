@@ -9,7 +9,6 @@ import SwiftUI
 
 struct QuizQuestionOrchestrationComponent: View {
     @State var userAnswers: [String] = []
-    // var correctAnswers: [Int: String] = [:]
     @EnvironmentObject var questionViewModel: QuestionViewModel
     @State var index: Int = 0
     @State var selectedOptionIndex: Int = 0
@@ -17,12 +16,6 @@ struct QuizQuestionOrchestrationComponent: View {
     @State var showResults = false
     
 
-//    func closeQuiz() -> some View {
-//        return NavigationLink(destination: ResultsPage(), isActive: $showResults) {
-//            EmptyView()
-//        }
-//        .isDetailLink(false)
-//    }
     func showResultsCheck(){
         if((self.index) == questionViewModel.questions?.count ?? 0){
             questionViewModel.showResults.toggle()
@@ -58,19 +51,6 @@ struct QuizQuestionOrchestrationComponent: View {
                 //    }
                 
             })
-        
-            
-            //  else {
-           // closeQuiz()
-            //            NavigationLink{
-            //
-            //            }label: {
-            //
-            //            }.fullScreenCover(isPresented: $showResults){
-            //
-            //                ResultsPage()
-            //            }
-            //}
         
     }
 }

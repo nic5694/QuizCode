@@ -10,7 +10,7 @@ struct HomePage: View {
     @EnvironmentObject var userViewModel: UserViewModel
     @StateObject var scoreViewModel: ScoreViewModel
     @EnvironmentObject var questionViewModel:QuestionViewModel
-    @AppStorage("latestQuiz") var latestQuiz: String = ""
+    @AppStorage("latestQuizTitle") private var latestQuizTitle: String = ""
     let quizComponents = [
             ("HTML", Image("html"), Color.red),
             ("Linux", Image("linux"), Color.yellow),
@@ -19,70 +19,65 @@ struct HomePage: View {
             ("Python", Image("python"), Color.green),
             ("Javascript", Image("javascript"), Color.orange)
         ]
-    
     init() {
         _scoreViewModel = StateObject(wrappedValue: ScoreViewModel())
     }
     var body: some View {
         NavigationStack{
-                ZStack{
-                    VStack {
-                        Rectangle()
-                            .fill(Color.blue)
-                            .frame(maxWidth: .infinity)
-                            .edgesIgnoringSafeArea(.all)
-
-                        Rectangle()
-                            .fill(Color.white)
-                            .frame(maxWidth: .infinity)
-                            .edgesIgnoringSafeArea(.all)
-                                    }
-                    VStack{
-                        HStack{
-                            Text("Hi \(userViewModel.user.firstName), please select the subject you would like to test yourself on.").supportingTitleTextOnBlueBackgroundStyle()
-                            NavigationLink{
-                                SettingsView()
-                            } label: {
-                                AnimationGear()
-                                    .tint(.white)
-                                    .navigationBarTitle("Home", displayMode: .inline)
-                                    .toolbarColorScheme(.dark, for: .navigationBar)
-                                    .onAppear{
-                                        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 30, weight: .bold)]
-                                    }
-                                    .toolbarBackground(Color.blue, for: .navigationBar)
-                                    .toolbarBackground(.visible, for: .navigationBar)
-                            }
+            ZStack{
+                VStack {
+                    Rectangle()
+                        .fill(Color.blue)
+                        .frame(maxWidth: .infinity)
+                        .edgesIgnoringSafeArea(.all)
+                    
+                    Rectangle()
+                        .fill(Color.white)
+                        .frame(maxWidth: .infinity)
+                        .edgesIgnoringSafeArea(.all)
+                }
+                VStack{
+                    HStack{
+                        Text("Hi \(userViewModel.user.firstName), please select the subject you would like to test yourself on.").supportingTitleTextOnBlueBackgroundStyle()
+                        NavigationLink{
+                            SettingsView()
+                        } label: {
+                            AnimationGear()
+                                .tint(.white)
+                                .navigationBarTitle("Home", displayMode: .inline)
+                                .toolbarColorScheme(.dark, for: .navigationBar)
+                                .onAppear{
+                                    UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 30, weight: .bold)]
+                                }
+                                .toolbarBackground(Color.blue, for: .navigationBar)
+                                .toolbarBackground(.visible, for: .navigationBar)
                         }
-                        .background(Color.blue)
-                        .cornerRadius(0.5)
-                        Spacer()
-                        ScrollView(.horizontal){
-                            VStack{
-                                HStack{
-                                    if let latestQuizIndex = quizComponents.firstIndex(where: { $0.0 == latestQuiz }) {
-                                        let reorderedQuizzes = quizComponents[latestQuizIndex...] + quizComponents[..<latestQuizIndex]
-                                        ForEach(reorderedQuizzes, id: \.0) { title, image, themeColor in
-                                            QuizContainerComponent(title: title, image: image, themeColor: themeColor)
-                                        }
-                                    } else {
-                                        ForEach(quizComponents, id: \.0) { title, image, themeColor in
-                                            QuizContainerComponent(title: title, image: image, themeColor: themeColor)
-                                        }
+                    }
+                    .background(Color.blue)
+                    .cornerRadius(0.5)
+                    Spacer()
+                    ScrollView(.horizontal){
+                        VStack{
+                            HStack{
+                                if let latestQuizIndex = quizComponents.firstIndex(where: { $0.0 == latestQuizTitle }) {
+                                    let reorderedQuizzes = quizComponents[latestQuizIndex...] + quizComponents[..<latestQuizIndex]
+                                    ForEach(reorderedQuizzes, id: \.0) { title, image, themeColor in
+                                        QuizContainerComponent(title: title, image: image, themeColor: themeColor)
                                     }
-//                                    ForEach(quizComponents, id: \.0) { title, image, themeColor in
-//                                        QuizContainerComponent(title: title, image: image, themeColor: themeColor)
-//                                    }
+                                } else {
+                                    ForEach(quizComponents, id: \.0) { title, image, themeColor in
+                                        QuizContainerComponent(title: title, image: image, themeColor: themeColor)
+                                    }
                                 }
                             }
                         }
-                        Spacer()
                     }
+                    Spacer()
                 }
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .environmentObject(scoreViewModel)
-        
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .environmentObject(scoreViewModel)
     }
 }
 

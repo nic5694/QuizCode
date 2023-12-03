@@ -20,7 +20,7 @@ class QuestionViewModel : ObservableObject {
         }
     }
     @Published var currentQuizProgress : [String]?
-    @Published var isQuizStarted: Bool = false
+//    @Published var isQuizStarted: Bool = false
     @Published var currentQuizQuestionNum: Int = 0
 //    @Published var scrollListItem: [ScrollListItemComponent] = [
 //        ScrollListItemComponent(text: "Quiz: Linux 13/15"),
@@ -32,16 +32,16 @@ class QuestionViewModel : ObservableObject {
 //        ScrollListItemComponent(text: "Quiz: Linux 1/1"),
 //        ScrollListItemComponent(text: "Quiz: HTML 7/7")
 //    ]
-    private let latestQuizKey = "latestQuiz"
-    var latestQuiz: String {
-            get {
-                return UserDefaults.standard.string(forKey: latestQuizKey) ?? ""
-            }
-            set {
-                UserDefaults.standard.set(newValue, forKey: latestQuizKey)
-            }
-        }
-    
+//    private let latestQuizKey = "latestQuiz"
+//    var latestQuiz: String {
+//            get {
+//                return UserDefaults.standard.string(forKey: latestQuizKey) ?? ""
+//            }
+//            set {
+//                UserDefaults.standard.set(newValue, forKey: latestQuizKey)
+//            }
+//        }
+//    
     func retreiveQuestions(nbOfQuestions: Int, category: String? = nil, difficulty: String, tags: String? = nil) {
         print("before the if in the view model")
         
@@ -69,12 +69,37 @@ class QuestionViewModel : ObservableObject {
         
         print("Size of the questions array: \(self.questions?.count ?? 0)")
     }
-    func getAnswerArray() -> [String]{
-        var answer: [String] = []
-        for question in questions!{
-            answer.append(question.correct_answer!)
+//    func getAnswerArray() -> [String]{
+//        var answer: [String] = []
+//        for question in questions!{
+//            
+//            answer.append(question.correct_answer!)
+//        }
+//        return answer
+//    }
+    func getAnswerArray() -> [String] {
+        var answers: [String] = []
+
+        for question in questions! {
+            if let correctAnswer = question.correct_answer, !correctAnswer.isEmpty {
+                answers.append(correctAnswer)
+            } else if let correctAnswers = question.correct_answers as? [String: String] {
+                // Handle the case where question.correct is nil or empty
+                // and fallback to checking question.correct_answers
+
+                if let answerB = correctAnswers["answer_b_correct"], answerB == "true" {
+                    answers.append(answerB)
+                } else {
+                    // Handle other cases or add a default value
+                    answers.append("Default Answer")
+                }
+            } else {
+                // Handle the case where both question.correct and question.correct_answers are nil
+                print("Error: Both question.correct and question.correct_answers are nil")
+            }
         }
-        return answer
+
+        return answers
     }
     func calculateScore(userAnswers: [String])-> String{
         let answers = getAnswerArray()

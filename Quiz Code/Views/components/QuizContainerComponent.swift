@@ -14,9 +14,14 @@ struct QuizContainerComponent: View {
     @EnvironmentObject var questionViewModel: QuestionViewModel
     @State private var selectedDifficulty: String = ""
     @State private var numberOfQuestions: Int = 10
-    @State private var latestTest: String = ""
+    let latestQuizTitleKey = "latestQuizTitle"
+    let latestQuizDifficultyKey = "latestQuizDifficulty"
+    let latestQuizQestionNumKey = "latestQuizQestionNum"
+    @AppStorage("latestQuizTitle") private var latestQuizTitle: String = ""
+    @AppStorage("latestQuizDifficulty") private var latestQuizDifficulty: String = ""
+    @AppStorage("latestQuizQestionNum") private var latestQuizQuestionNum: Int = 0
+    private let latestQuizKey = "latestQuiz"
     
-    // @State private var test = false
     var body: some View {
         VStack{
             VStack{
@@ -45,16 +50,19 @@ struct QuizContainerComponent: View {
                     
                 }label: {
                     Button(action: {
-                        if(title == "Docker" || title == "Linux"){
-                            questionViewModel.retreiveQuestions(nbOfQuestions: numberOfQuestions, category: title, difficulty: selectedDifficulty)
-                        }
-                        else{
-                            questionViewModel.retreiveQuestions(nbOfQuestions: numberOfQuestions, category: "", difficulty: selectedDifficulty, tags: title)
+                            if(title == "Docker" || title == "Linux"){
+                                questionViewModel.retreiveQuestions(nbOfQuestions: numberOfQuestions, category: title, difficulty: selectedDifficulty)
+                            }
+                            else{
+                                questionViewModel.retreiveQuestions(nbOfQuestions: numberOfQuestions, category: "", difficulty: selectedDifficulty, tags: title)
+                                
+                            }
                             
-                        }
-                        questionViewModel.currentQuizQuestionNum = 0
-                        latestTest = title 
-                        UserDefaults.standard.set(latestTest, forKey: "latestQuiz")
+                            questionViewModel.currentQuizQuestionNum = 0
+                            latestQuizTitle = title
+                            latestQuizDifficulty = selectedDifficulty
+                            latestQuizQuestionNum = numberOfQuestions
+                        
                     }, label: {
                         Text("Start")
                     }).fullScreenCover(isPresented: $questionViewModel.quizInProgress){
@@ -64,6 +72,10 @@ struct QuizContainerComponent: View {
                     
                 }
                 .onAppear{
+                    if (latestQuizTitle == title){
+                        selectedDifficulty = latestQuizDifficulty
+                        numberOfQuestions = latestQuizQuestionNum
+                    }
                     questionViewModel.questionsDidChange = {
                         if let questions = questionViewModel.questions, !questions.isEmpty {
                             questionViewModel.quizInProgress.toggle()
