@@ -13,7 +13,6 @@ struct QuizQuestionOrchestrationComponent: View {
     @State var index: Int = 0
     @State var selectedOptionIndex: Int = 0
     @State var value: String = ""
-    @State var showResults = false
     
 
     func showResultsCheck(){
@@ -41,21 +40,15 @@ struct QuizQuestionOrchestrationComponent: View {
                     showResultsCheck()
                 }
             }, label: {
-                
-                NavigationLink {
-                    
-                } label: {}.fullScreenCover(isPresented: $questionViewModel.showResults){
-                    ResultsPage(results: questionViewModel.calculateScore(userAnswers: userAnswers), subject: getCategoryOrTag())
-                }
-                Text("Submit")
-                //    }
-                
+                    NavigationLink {
+                    } label: {}.fullScreenCover(isPresented: $questionViewModel.showResults){
+                        ResultsPage(results: questionViewModel.calculateScore(userAnswers: userAnswers), subject: getCategoryOrTag())
+                    }
+                    Text("Submit")
             })
-        
     }
 }
     
     #Preview {
         QuizQuestionOrchestrationComponent()
     }
-
